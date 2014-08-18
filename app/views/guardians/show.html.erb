@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @guardian.username %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @guardian.password_digest %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @guardian.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @guardian.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @guardian.email %>
+</p>
+
+<%= link_to 'Edit', edit_guardian_path(@guardian) %> |
+<%= link_to 'Back', guardians_path %>

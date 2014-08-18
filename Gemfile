@@ -36,6 +36,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use unicorn as the app server
 gem 'unicorn'
 
+gem 'cancancan', '~> 1.9'
+
 group :test do
   gem 'faker'
   gem 'capybara'
