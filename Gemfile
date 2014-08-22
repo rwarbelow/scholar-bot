@@ -13,14 +13,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
 gem 'cancancan', '~> 1.9'
 gem 'autoprefixer-rails'
+gem 'faker'
 
 group :development, :test do
 	gem 'rspec-rails'
-	gem 'faker'
 end
 
 group :test do
-	gem 'faker'
 	gem 'capybara'
 	gem 'database_cleaner'
 end
