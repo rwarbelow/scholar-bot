@@ -20,18 +20,4 @@ class SessionsController < ApplicationController
    flash[:notice] = "Logout Successful."
    redirect_to root_path
  	end
-
-  def dashboard
-    if current_student?
-      redirect_to students_root_path
-    elsif current_guardian?
-      redirect_to guardians_root_path
-    elsif current_admin?
-      redirect_to admins_root_path
-    elsif current_teacher?
-      redirect_to teachers_root_path
-    else
-      redirect_to root_path
-    end
-  end
 end

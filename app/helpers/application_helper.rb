@@ -1,7 +1,12 @@
 module ApplicationHelper
   def current_user
-  	user_class = session[:user_type]
-    @current_user ||= user_class.classify.constantize.find_by(id: session["#{user_class}_id".to_sym])
+  	if user_type
+		  @current_user ||= user_type.classify.constantize.find_by(id: session["#{user_type}_id".to_sym])
+  	end
+  end
+
+  def user_type
+  	session[:user_type]
   end
 
   def current_admin
@@ -34,5 +39,19 @@ module ApplicationHelper
 
   def current_guardian?
     !!current_guardian
+  end
+
+  def dashboard
+    if current_student?
+      redirect_to students_root_path
+    elsif current_guardian?
+      redirect_to guardians_root_path
+    elsif current_admin?
+      redirect_to admins_root_path
+    elsif current_teacher?
+      redirect_to teachers_root_path
+    else
+      redirect_to root_path
+    end
   end
 end
