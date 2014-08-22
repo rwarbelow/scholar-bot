@@ -1,0 +1,39 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login to ScholarBot</h4>
+        <% if flash[:notice] %>
+				  <p class="flash-notice"><%= flash[:notice] %></p>
+				<% end %>
+      </div>
+      <div class="modal-body">
+        <%= form_tag login_path do %>
+				  <% if flash[:errors] %>
+				    <p class="flash-notice"><%= flash[:errors] %></p>
+				  <% end %>
+				  <%= text_field_tag "username", nil, placeholder: "username" %>
+				  <%= password_field_tag "password", nil, placeholder: "password" %> <br> <br>
+				  <%= radio_button_tag(:type, :student) %>
+				  <%= label_tag(:student) %> <br>
+				  <%= radio_button_tag(:type, :guardian) %>
+				  <%= label_tag(:guardian) %> <br>
+				  <%= radio_button_tag(:type, :teacher) %>
+				  <%= label_tag(:teacher) %>
+				
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag value="Log In", :class => "btn btn-large btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<p><%= link_to "Create Guardian Account", root_path %></p>

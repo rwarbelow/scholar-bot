@@ -5,3 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+months  = (1..12).to_a
+days    = (1..28).to_a
+years   = ["1999", "2000", "2001", "2002", "2003"]
+genders = ["female", "male"]
+grades  = [6,7,8,9]
+counter = 1
+100.times do
+	Student.create(
+				first_name: Faker::Name.name,
+				last_name: Faker::Name.name,
+				password: "password",
+				password_confirmation: "password",
+				username: "student#{counter}",
+				dob: "#{years.sample}-#{months.sample.to_s.rjust(2, "0")}-#{days.sample.to_s.rjust(2, "0")}",
+				gender: "#{genders.sample}",
+				id_num: "#{rand(10000*1000)}",
+				grade: "#{grades.sample}",
+				login_counter: 0
+				)
+	counter += 1
+end

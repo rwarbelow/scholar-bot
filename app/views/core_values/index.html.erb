@@ -1,0 +1,27 @@
+<h1>Listing core_values</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @core_values.each do |core_value| %>
+      <tr>
+        <td><%= core_value.name %></td>
+        <td><%= core_value.description %></td>
+        <td><%= link_to 'Show', core_value %></td>
+        <td><%= link_to 'Edit', edit_core_value_path(core_value) %></td>
+        <td><%= link_to 'Destroy', core_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Core value', new_core_value_path %>

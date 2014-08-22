@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @core_value.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @core_value.description %>
+</p>
+
+<%= link_to 'Edit', edit_core_value_path(@core_value) %> |
+<%= link_to 'Back', core_values_path %>

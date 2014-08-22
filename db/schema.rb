@@ -11,42 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817195914) do
+ActiveRecord::Schema.define(version: 20140822052323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "core_values", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", force: true do |t|
+    t.integer  "teacher_id"
+    t.integer  "period"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enrollments", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "guardians", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
+    t.string   "username",                    null: false
+    t.string   "password_digest",             null: false
+    t.string   "first_name",                  null: false
+    t.string   "last_name",                   null: false
     t.string   "email"
+    t.integer  "login_counter",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guardianships", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "guardian_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "students", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
+    t.string   "username",                    null: false
+    t.string   "password_digest",             null: false
+    t.string   "first_name",                  null: false
+    t.string   "last_name",                   null: false
     t.string   "email"
-    t.integer  "student_id",      null: false
-    t.date     "dob",             null: false
-    t.integer  "grade",           null: false
-    t.string   "gender",          null: false
+    t.string   "id_num",                      null: false
+    t.date     "dob",                         null: false
+    t.integer  "grade",                       null: false
+    t.string   "gender",                      null: false
+    t.integer  "login_counter",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "teachers", force: true do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "email",           null: false
-    t.string   "title",           null: false
+    t.string   "username",                        null: false
+    t.string   "password_digest",                 null: false
+    t.string   "first_name",                      null: false
+    t.string   "last_name",                       null: false
+    t.string   "email",                           null: false
+    t.string   "title",                           null: false
+    t.boolean  "is_admin",        default: false
+    t.integer  "login_counter",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
