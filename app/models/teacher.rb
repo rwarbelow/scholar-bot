@@ -1,10 +1,14 @@
 class Teacher < ActiveRecord::Base
+	include User
 	validates :first_name, 		presence: true
 	validates :last_name, 		presence: true
 	validates :title, 				presence: true
 	validates :email, 				presence: true
 	validates :username, 			presence: true, 
 														uniqueness: true
+
+	has_many :courses
+	has_many :students, through: :courses
 														
 	has_secure_password
 	before_validation :downcase_username
