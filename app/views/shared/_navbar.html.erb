@@ -24,7 +24,7 @@
 
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <%= select_tag :student, options_from_collection_for_select(Student.all, "id", "first_name"), { include_blank: true, class: 'chosen-select' } %>
+          <%= select_tag :student_id, options_from_collection_for_select(Student.all, "id", "first_name"), { include_blank: true, class: 'chosen-select' } %>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
