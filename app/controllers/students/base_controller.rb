@@ -1,5 +1,12 @@
 class Students::BaseController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_filter :require_student
+
+  def require_student
+    unless current_user && current_user.student?
+      redirect_to root_path
+    end
+  end
 
   def index
     @students = Student.all

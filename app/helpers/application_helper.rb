@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def current_admin
-    current_user if (current_user.is_a?(Teacher) && current_user.admin)
+    current_user if (current_user.is_a?(Teacher) && current_user.admin?)
   end
 
   def current_admin?
@@ -47,11 +47,19 @@ module ApplicationHelper
     elsif current_guardian?
       redirect_to guardians_root_path
     elsif current_admin?
-      redirect_to admins_root_path
+      redirect_to admin_root_path
     elsif current_teacher?
       redirect_to teachers_root_path
     else
       redirect_to root_path
     end
+  end
+
+  def all_students
+    Student.all
+  end
+
+  def courses_available_for(period)
+    Course.where(period_id: period)
   end
 end

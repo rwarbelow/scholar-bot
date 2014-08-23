@@ -11,21 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822052323) do
+ActiveRecord::Schema.define(version: 20140823010907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "core_values", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.text   "description"
   end
 
   create_table "courses", force: true do |t|
     t.integer  "teacher_id"
-    t.integer  "period"
+    t.integer  "period_id"
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140822052323) do
 
   create_table "enrollments", force: true do |t|
     t.integer  "student_id"
-    t.integer  "course_id"
+    t.integer  "period_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +52,10 @@ ActiveRecord::Schema.define(version: 20140822052323) do
     t.integer  "guardian_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "periods", force: true do |t|
+    t.string "period"
   end
 
   create_table "students", force: true do |t|

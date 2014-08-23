@@ -1,0 +1,23 @@
+<h1>welcome, <%= current_user.first_name %> admin!</h1>
+
+<%= form_tag admin_load_students_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import Students" %>
+<% end %>
+
+<% @students.each do |s| %>
+	<p><b><%= s.first_name %></b></p>
+	<ul>
+		<% s.enrollments.each do |e| %>
+			<li>Period <%= e.period.period %>:
+				<form role="search">
+	        <div class="form-group">
+	          <%= select_tag :course_id, options_from_collection_for_select(courses_available_for(e.period.id), "id", "subject"), { include_blank: true, class: 'chosen-select' } %>
+	        </div>
+	        <button type="submit" class="btn btn-sm btn-default">Submit</button>
+	      </form>
+			</li>
+			<br><br>
+		<% end %>
+	</ul>
+<% end %>

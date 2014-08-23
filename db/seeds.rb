@@ -10,9 +10,14 @@ days    = (1..28).to_a
 years   = ["1999", "2000", "2001", "2002", "2003"]
 genders = ["female", "male"]
 grades  = [6,7,8,9]
+
+(1..7).to_a.each do |p|
+	Period.create(period:"#{p}")
+end
+
 counter = 1
 100.times do
-	Student.create(
+	student = Student.create(
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
 		password: "password",
@@ -24,6 +29,9 @@ counter = 1
 		grade: "#{grades.sample}",
 		login_counter: 0
 		)
+	Period.all.each do |p|
+		student.enrollments.create(period_id: p.id)
+	end
 	counter += 1
 end
 
@@ -34,7 +42,32 @@ counter = 1
 		last_name: Faker::Name.last_name,
 		password: "password",
 		password_confirmation: "password",
-		username: "student#{counter}",
-		login_counter: 0
+		email: Faker::Internet.safe_email,
+		username: "teacher#{counter}",
+		login_counter: 0,
+		title: "example teacher",
+		is_admin: false
 		)
 end
+
+admin = Teacher.create(
+	first_name: "Admin",
+	last_name: "Example",
+	password: "password",
+	password_confirmation: "password",
+	email: Faker::Internet.safe_email,
+	username: "admin",
+	login_counter: 0,
+	title: "admin",
+	is_admin: true
+	)
+
+40.times do
+	Course.create(
+		teacher_id: Teacher.all.sample.id,
+		subject: Faker::Lorem.sentence,
+		period_id: Period.all.sample.id
+		)
+end
+
+

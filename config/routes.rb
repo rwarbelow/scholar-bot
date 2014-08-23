@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :students
     resources :guardians
     resources :teachers
+    post '/load_students', to: 'dashboard#load_students'
     root :to => "dashboard#index"
   end
 
