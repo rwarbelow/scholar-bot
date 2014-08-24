@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :enrollments
     resources :guardianships
-    resources :students
+    resources :students do
+      post '/assign_courses', to: 'students#assign_courses'
+      post '/reset_password', to: 'students#reset_password'
+    end
     resources :core_values
     resources :courses do
       post '/assign_students', to: 'courses#assign_students'
@@ -18,14 +21,16 @@ Rails.application.routes.draw do
     resources :teachers
     post '/load_students', to: 'students#load_students'
     get '/download_students', to: 'students#download_students'
-    post '/assign_course_students', to: 'students#assign_course_students'
     root :to => "dashboard#index"
   end
 
   namespace :teachers do
+    resources :students
     resources :courses do
       get '/liveclass', to: 'live#classroom'
+      post '/liveclass', to: 'live#update'
     end
+    get '/view_student', to: "students#view_student"
     root :to => "dashboard#index"
   end
 

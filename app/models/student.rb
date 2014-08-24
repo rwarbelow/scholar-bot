@@ -12,8 +12,9 @@ class Student < ActiveRecord::Base
 
 	has_many :enrollments
 	has_many :courses, through: :enrollments
+	has_many :student_actions, through: :enrollments
 	has_many :teachers, through: :courses
-	has_many :student_actions
+	has_many :student_actions, through: :enrollments
 	has_many :guardianships
 	has_many :guardians, through: :guardianships
 
@@ -34,10 +35,10 @@ class Student < ActiveRecord::Base
 	end
 
 	def self.load_students(file)
-		CSV.foreach(file.path, headers:true, header_converters: :symbol, skip_blanks: true) do |row|
-			next if row.any? { |e| e[1].nil? }
+		csv = CSV.foreach(file.path, headers: true, header_converters: :symbol) do |row|
+			next if row.any? { |attribute| attribute[1].nil? }
 			year,month,day = row[:dob].split("-")
-			student = Student.create(
+			student = Student.create!(
 				first_name: row[:first_name].capitalize,
 				last_name: 	row[:last_name].capitalize,
 				id_num: 		row[:id_num],

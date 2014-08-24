@@ -1,0 +1,90 @@
+.box {
+	height: 80px;
+	width: 80px;
+	background-color: #BBF29B;
+	margin: 10px;
+	float: left;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.student-name {
+	font-size:11px;
+}
+
+.initials {
+	font-size: 33px;
+	font-weight: bold;
+	font-family: 'Oswald';
+}
+
+input[type="number"] {
+	display: none;
+}
+/*.message {
+	padding: 30px;
+	text-align: center;
+	color: white;
+	height: 50px;
+	clear:both;
+}*/
+
+.append-message {
+	font-size: 30px;
+	line-height: 100%;
+}
+
+.selected {
+	background-color: Orange;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+input[type="submit"] {
+	margin-bottom: 10px;
+	width: 100%;
+	float: right;
+	background:navy;
+	color: white;
+	height:50px;
+	font-size:15px;
+}
+
+.student-container {
+	width: 80%;
+	float: left;
+}
+
+.action-submit-buttons {
+	width: 20%;
+	float: left;
+	height: 100%;
+}
+
+#overlay {
+	text-align: center;
+	display: none; /* ensures it’s invisible until it’s called */
+	position: absolute; /* makes the div go into a position that’s absolute to the browser viewing area */
+	left: 33%; /* positions the div half way horizontally */
+	top: 25%; /* positions the div half way vertically */
+	padding: 25px;
+	border: 8px solid black;
+	background-color: #ffffff;
+	width: 30%;
+	height: 30%;
+	z-index: 100; /* makes the div the top layer, so it’ll lay on top of the other content */
+	font-size: 200%;
+}
+#fade {
+	display: none;  /* ensures it’s invisible until it’s called */
+	position: absolute;  /* makes the div go into a position that’s absolute to the browser viewing area */
+	left: 0%; /* makes the div span all the way across the viewing area */
+	top: 0%; /* makes the div span all the way across the viewing area */
+	background-color: black;
+	-moz-opacity: 0.7; /* makes the div transparent, so you have a cool overlay effect */
+	opacity: .70;
+	filter: alpha(opacity=70);
+	width: 100%;
+	height: 100%;
+	z-index: 90; /* makes the div the second most top layer, so it’ll lay on top of everything else EXCEPT for divs with a higher z-index (meaning the #overlay ruleset) */
+}

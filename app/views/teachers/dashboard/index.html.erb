@@ -4,20 +4,3 @@
 	<p><%= link_to course.subject, teachers_course_liveclass_path(course) %></p>
 <% end %>
 
-<%= link_to "See student actions" %>
-<div class="student-container">
-	<div class="message"></div>
-	<% @course.students.each do |student| %>
-	<div class="box student" data-student-id="<%= s.id %>">
-		<%= student.name.capitalize %>
-	</div>
-	<% end %>
-</div>
-<div class="action-submit-buttons">
-	<% ActionType.all.each do |a| %>
-		<button class="submit" data-action-type="<%= a.name %>"><%= a.name %></button>
-	<% end %>
-</div>
-
-<div id="overlay"></div>
-<div id="fade"></div>

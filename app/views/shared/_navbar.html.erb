@@ -24,12 +24,12 @@
         </li>
       </ul>
       <% if current_admin? %>
-      <form class="navbar-form navbar-left" role="search">
+      <%= form_tag teachers_view_student_path, method: :get, class: "navbar-form navbar-left" do %>
         <div class="form-group">
           <%= select_tag :student_id, options_from_collection_for_select(all_students, :id, :full_name), { include_blank: true, class: 'chosen-select' } %>
         </div>
         <button type="submit" class="btn btn-sm btn-default">Submit</button>
-      </form>
+      <% end %>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <li>

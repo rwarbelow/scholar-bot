@@ -11,6 +11,10 @@ module User
 		true if self.is_a?(Student)
 	end
 
+	def teacher?
+		self.is_a?(Teacher) ? true : false
+	end
+
 	def full_name
 		"#{first_name} #{last_name}"
 	end

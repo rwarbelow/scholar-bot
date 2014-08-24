@@ -10,6 +10,7 @@ class Admin::CoursesController < Admin::BaseController
 
   def show
     @available_students = Student.available_for(@course)
+    @available_enrollments = Enrollment.available_for(@course)
   end
 
   def new
@@ -20,7 +21,14 @@ class Admin::CoursesController < Admin::BaseController
   end
 
   def assign_students
-    p params
+    @course = Course.find(params[:course_id])
+    enrollment_ids = params[:enrollment_ids]
+    enrollment_ids.each do |id|
+      enrollment = Enrollment.find(id)
+      enrollment.course_id = @course.id
+      enrollment.save
+    end
+    redirect_to admin_course_path(@course)
   end
 
   def create

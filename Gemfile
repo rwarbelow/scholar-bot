@@ -16,6 +16,7 @@ gem 'autoprefixer-rails'
 gem 'faker'
 gem 'chosen-rails'
 gem 'compass-rails'
+gem 'sidekiq'
 
 group :development, :test do
 	gem 'rspec-rails'

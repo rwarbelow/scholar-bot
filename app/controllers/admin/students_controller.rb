@@ -1,12 +1,6 @@
 class Admin::StudentsController < Admin::BaseController
 	before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-	def require_student
-		unless current_user && current_user.student?
-			redirect_to root_path
-		end
-	end
-
 	def index
 		@students = Student.order(:grade, :last_name)
 	end
@@ -57,11 +51,19 @@ class Admin::StudentsController < Admin::BaseController
 		end
 	end
 
-	def assign_student_courses
+	def assign_courses
 		@student = Student.find(params[:student_id])
 		periods_courses = params[:periods_courses]
 		@student.enroll_in_courses(periods_courses)
 		redirect_to admin_student_path(@student), notice: 'Course schedule was updated.'
+	end
+
+	def reset_password
+		@student = Student.find(params[:student_id])
+		@student.password = @student.id_num
+		@student.password_confirmation = @student.id_num
+		@student.save!
+		redirect_to admin_students_path, notice: "#{@student.first_name}'s password was successfully reset."
 	end
 
 	private
