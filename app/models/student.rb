@@ -53,6 +53,7 @@ class Student < ActiveRecord::Base
 				password_confirmation: row[:id_num],
 				login_counter: 0
 				)
+			p student.errors
 			p "created students"
 			student.create_enrollments
 			student.save
