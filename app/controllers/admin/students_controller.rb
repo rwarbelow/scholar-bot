@@ -46,9 +46,7 @@ class Admin::StudentsController < Admin::BaseController
 
 	def load_students
 		file = params[:file]
-		p "before load"
 		Student.load_students(file)
-		p "after load"
 		redirect_to admin_root_path
 	end
 

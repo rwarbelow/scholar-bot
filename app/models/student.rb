@@ -34,16 +34,12 @@ class Student < ActiveRecord::Base
 	end
 
 	def self.load_students(file)
-		p "in self load students file"
-		p file
 		CSV.foreach(file.path, headers:true, header_converters: :symbol, skip_blanks: true) do |row|
-			p row
 			next if row.any? { |e| e[1].nil? }
 			year,month,day = row[:dob].split("-")
-			p "after 'next if' line"
 			student = Student.create(
 				first_name: row[:first_name].capitalize,
-				last_name: 	row[:last_name.capitalize],
+				last_name: 	row[:last_name].capitalize,
 				id_num: 		row[:id_num],
 				dob: 				row[:dob],
 				grade: 			row[:grade],
@@ -53,8 +49,6 @@ class Student < ActiveRecord::Base
 				password_confirmation: row[:id_num],
 				login_counter: 0
 				)
-			p student.errors
-			p "created students"
 			student.create_enrollments
 			student.save
 		end
