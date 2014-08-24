@@ -46,7 +46,9 @@ class Admin::StudentsController < Admin::BaseController
 
 	def load_students
 		file = params[:file]
+		p "before load"
 		Student.load_students(file)
+		p "after load"
 		redirect_to admin_root_path
 	end
 
@@ -63,8 +65,6 @@ class Admin::StudentsController < Admin::BaseController
 		@student.enroll_in_courses(periods_courses)
 		redirect_to admin_student_path(@student), notice: 'Course schedule was updated.'
 	end
-
-
 
 	private
 	def set_student
