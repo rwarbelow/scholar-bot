@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140823010907) do
 
   create_table "courses", force: true do |t|
     t.integer  "teacher_id"
-    t.integer  "period_id"
     t.string   "subject"
+    t.integer  "period_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140823010907) do
   create_table "enrollments", force: true do |t|
     t.integer  "student_id"
     t.integer  "period_id"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140823010907) do
   end
 
   create_table "periods", force: true do |t|
-    t.string "period"
+    t.string "name"
   end
 
   create_table "students", force: true do |t|

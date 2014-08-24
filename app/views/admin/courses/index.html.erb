@@ -1,0 +1,28 @@
+<h1>All Courses</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= link_to "Period", admin_courses_path(sort: "period_id") %></th>
+      <th><%= link_to "Teacher", admin_courses_path(sort: "teacher_id") %></th>
+      <th><%= link_to "Subject", admin_courses_path(sort: "subject") %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.period.name %></td>
+        <td><%= course.teacher.last_name %></td>
+        <td><%= link_to course.subject, admin_course_path(course) %></td>
+        <td><%= link_to 'Edit Course Info', edit_admin_course_path(course) %></td>
+        <td><%= link_to 'Destroy', admin_course_path(course), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course', new_admin_course_path %>

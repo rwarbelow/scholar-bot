@@ -8,7 +8,8 @@ class Teacher < ActiveRecord::Base
 														uniqueness: true
 
 	has_many :courses
-	has_many :students, through: :courses
+	has_many :enrollments, through: :courses
+	has_many :students, through: :enrollments
 														
 	has_secure_password
 	before_validation :downcase_username

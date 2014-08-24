@@ -10,4 +10,8 @@ module User
 	def student?
 		true if self.is_a?(Student)
 	end
+
+	def full_name
+		"#{first_name} #{last_name}"
+	end
 end

@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1><%= @course.subject %> <small>period: <%= @course.period.name %></small></h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+		<table class="table">
+			<thead>
+				<th>
+					Currently Enrolled Students
+				</th>
+			</thead>
+			<tbody>
+				<% @course.students.each do |s| %>
+				<tr>
+					<td><%= "#{s.first_name} #{s.last_name}" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+  </div>
+  <div class="col-md-6">
+  	<table class="table">
+  		<thead>
+  			<th>Available Students</th>
+  		</thead>
+  		<tbody>
+  			<tr>
+  				<td>
+  					<%= form_tag admin_course_assign_students_path(@course) do %>
+						<%= hidden_field_tag :course_id, @course.id %>
+  					<%= select_tag :student_ids, options_from_collection_for_select(@available_students, "id", "full_name"), multiple: true, class: "chosen-select" %>
+  				</td>
+  			</tr>
+  		</tbody>
+  	</table>
+					<%= submit_tag "Enroll Students in #{@course.subject}", class: "btn btn-small btn-primary" %>
+					<% end %>
+  </div>
+</div>
+
+
+

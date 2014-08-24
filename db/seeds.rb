@@ -5,35 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-months  = (1..12).to_a
-days    = (1..28).to_a
-years   = ["1999", "2000", "2001", "2002", "2003"]
-genders = ["female", "male"]
-grades  = [6,7,8,9]
-
+Period.create(name:"All Team")
 (1..7).to_a.each do |p|
-	Period.create(period:"#{p}")
+	Period.create(name:"#{p}")
 end
 
-counter = 1
-100.times do
-	student = Student.create(
-		first_name: Faker::Name.first_name,
-		last_name: Faker::Name.last_name,
-		password: "password",
-		password_confirmation: "password",
-		username: "student#{counter}",
-		dob: "#{years.sample}-#{months.sample.to_s.rjust(2, "0")}-#{days.sample.to_s.rjust(2, "0")}",
-		gender: "#{genders.sample}",
-		id_num: "#{rand(10000*1000)}",
-		grade: "#{grades.sample}",
-		login_counter: 0
-		)
-	Period.all.each do |p|
-		student.enrollments.create(period_id: p.id)
-	end
-	counter += 1
-end
+# counter = 1
+# 100.times do
+# 	student = Student.create(
+# 		first_name: Faker::Name.first_name,
+# 		last_name: Faker::Name.last_name,
+# 		password: "password",
+# 		password_confirmation: "password",
+# 		username: "student#{counter}",
+# 		dob: "#{years.sample}-#{months.sample.to_s.rjust(2, "0")}-#{days.sample.to_s.rjust(2, "0")}",
+# 		gender: "#{genders.sample}",
+# 		id_num: "#{rand(10000*1000)}",
+# 		grade: "#{grades.sample}",
+# 		login_counter: 0
+# 		)
+# 	Period.all.each do |p|
+# 		student.enrollments.create(period_id: p.id)
+# 	end
+# 	counter += 1
+# end
 
 counter = 1
 8.times do
@@ -48,6 +43,7 @@ counter = 1
 		title: "example teacher",
 		is_admin: false
 		)
+	counter += 1
 end
 
 admin = Teacher.create(
@@ -65,7 +61,7 @@ admin = Teacher.create(
 40.times do
 	Course.create(
 		teacher_id: Teacher.all.sample.id,
-		subject: Faker::Lorem.sentence,
+		subject: Faker::Company.catch_phrase,
 		period_id: Period.all.sample.id
 		)
 end

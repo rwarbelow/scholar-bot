@@ -46,8 +46,6 @@ module ApplicationHelper
       redirect_to students_root_path
     elsif current_guardian?
       redirect_to guardians_root_path
-    elsif current_admin?
-      redirect_to admin_root_path
     elsif current_teacher?
       redirect_to teachers_root_path
     else
@@ -56,7 +54,7 @@ module ApplicationHelper
   end
 
   def all_students
-    Student.all
+    Student.order(:last_name)
   end
 
   def courses_available_for(period)

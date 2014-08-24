@@ -11,6 +11,13 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Calendar</a></li>
             <li><a href="#">Facebook</a></li>
+            <% if current_teacher? %>
+              <li><%= link_to "Teacher Dashboard", teachers_root_path%></li>
+            <% end %>
+            <% if current_admin? %>
+              <li><%= link_to "Download Student Roster", admin_download_students_path%></li>
+              <li><%= link_to "Admin Dashboard", admin_root_path%></li>
+            <% end %>
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
@@ -19,7 +26,7 @@
       <% if current_admin? %>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <%= select_tag :student_id, options_from_collection_for_select(all_students, "id", "first_name"), { include_blank: true, class: 'chosen-select' } %>
+          <%= select_tag :student_id, options_from_collection_for_select(all_students, :id, :full_name), { include_blank: true, class: 'chosen-select' } %>
         </div>
         <button type="submit" class="btn btn-sm btn-default">Submit</button>
       </form>

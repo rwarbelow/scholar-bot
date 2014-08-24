@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
 	def create
+    session.clear
 		user_type = params[:type]
 		@user = user_type.classify.constantize.find_by(username: params[:username].downcase)
   	if @user && @user.authenticate(params[:password])

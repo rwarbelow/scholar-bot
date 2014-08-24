@@ -1,0 +1,89 @@
+
+  <div class="col-md-10"><%= link_to 'Back', admin_students_path %></div>
+  <div class="col-md-2 delete-link"><%= button_to 'Delete Student', admin_student_path(@student), method: :delete, class: "btn btn-small btn-danger", data: { confirm: 'Are you sure?' } %></div>
+<div class="page-header">
+  <h1><%= "#{@student.first_name} #{@student.last_name}" %> <small>grade <%= @student.grade %></small></h1>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<div class="enrollment-table">
+	<%= form_tag admin_assign_student_courses_path do %>
+		<%= hidden_field_tag :student_id, @student.id %>
+				<table class="table">
+					<thead>
+						<th>Period</th>
+						<th>Current Enrollment</th>
+						<th></th>
+					</thead>
+					<tbody>
+						<% @student.enrollments.each do |e| %>
+						<tr>
+							<td><%= e.period.name %></td>
+							<td><%= current_course_selector_for(e) %></td>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+	    <button type="submit" class="btn btn-primary enrollment-button">Update Course Schedule</button>
+	<% end %>
+</div>
+
+<div class="student-info-table">
+	<%= form_for(@student, url: admin_student_path(@student), method: :patch ) do |f| %>
+	  <% if @student.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+	      <ul>
+	      <% @student.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		<table class="table">
+			<thead>
+				<th>Student Information</th>
+				<th> </th>
+			</thead>
+	    <tbody>
+		    <tr>
+		    	<td><%= f.label :username %></td>
+		    	<td><%= f.text_field :username %></td>
+		  	</tr>
+		  	<tr>
+			    <td><%= f.label :first_name %></td>
+			    <td><%= f.text_field :first_name %></td>
+			  </tr>
+			  <tr>
+			    <td><%= f.label :last_name %></td>
+			    <td><%= f.text_field :last_name %></td>
+		  	</tr>
+		  	<tr>
+			    <td><%= f.label :email %></td>
+			    <td><%= f.text_field :email %></td>
+		  	</tr>
+		  	<tr>
+			    <td><%= f.label "ID Number" %></td>
+			    <td><%= f.number_field :id_num %></td>
+		  	</tr>
+		  	<tr>
+			    <td><%= f.label "Date of Birth" %></td>
+			    <td><%= f.date_select(:dob, start_year: 1995) %></td>
+		  	</tr>
+		  	<tr>
+			    <td><%= f.label :grade %></td>
+			    <td><%= f.number_field :grade %></td>
+			  </tr>
+			  <tr>
+			    <td><%= f.label :gender %></td>
+			    <td><%= f.text_field :gender %></td>
+		    </tr>
+		  </tbody>
+	  </table>
+	    <%= f.submit class: "btn btn-primary" %>
+	<% end %>
+</div>
+
+
