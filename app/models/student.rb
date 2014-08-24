@@ -40,7 +40,8 @@ class Student < ActiveRecord::Base
 			p row
 			next if row.any? { |e| e[1].nil? }
 			year,month,day = row[:dob].split("-")
-			student = Student.create!(
+			p "after 'next if' line"
+			student = Student.create(
 				first_name: row[:first_name].capitalize,
 				last_name: 	row[:last_name.capitalize],
 				id_num: 		row[:id_num],
