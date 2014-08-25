@@ -1,0 +1,2 @@
+module StudentActionHelper
+end

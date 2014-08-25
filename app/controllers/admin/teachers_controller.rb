@@ -18,7 +18,7 @@ class Admin::TeachersController < Admin::BaseController
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      redirect_to @teacher, notice: 'Teacher was successfully created.'
+      redirect_to admin_teacher_path(@teacher), notice: 'Teacher was successfully created.'
     else
       render :new
     end
@@ -26,7 +26,7 @@ class Admin::TeachersController < Admin::BaseController
 
   def update
     if @teacher.update(teacher_params)
-      redirect_to @teacher, notice: 'Teacher was successfully updated.'
+      redirect_to admin_teacher_path(@teacher), notice: 'Teacher was successfully updated.'
     else
       render :edit
     end
@@ -34,7 +34,15 @@ class Admin::TeachersController < Admin::BaseController
 
   def destroy
     @teacher.destroy
-    redirect_to teachers_url, notice: 'Teacher was successfully destroyed.'
+    redirect_to admin_teachers_url, notice: 'Teacher was successfully destroyed.'
+  end
+
+    def reset_password
+    @teacher = Teacher.find(params[:teacher_id])
+    @teacher.password = "password"
+    @teacher.password_confirmation = "password"
+    @teacher.save!
+    redirect_to admin_teachers_path, notice: "#{@teacher.first_name}'s password was successfully reset."
   end
 
   private

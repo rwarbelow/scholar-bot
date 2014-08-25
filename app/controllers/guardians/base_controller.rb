@@ -1,5 +1,12 @@
 class Guardians::BaseController < ApplicationController
   before_action :set_guardian, only: [:show, :edit, :update, :destroy]
+  before_filter :require_guardian
+
+  def require_guardian
+    unless current_user && current_user.guardian?
+      redirect_to root_path
+    end
+  end
 
   def index
     @guardians = Guardian.all

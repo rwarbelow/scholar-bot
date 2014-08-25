@@ -7,6 +7,7 @@ end
 Rails.application.routes.draw do
 
   namespace :admin do
+    resources :student_actions
     resources :enrollments
     resources :guardianships
     resources :students do
@@ -18,7 +19,9 @@ Rails.application.routes.draw do
       post '/assign_students', to: 'courses#assign_students'
     end
     resources :guardians
-    resources :teachers
+    resources :teachers do
+      post '/reset_password', to: 'teachers#reset_password'
+    end
     post '/load_students', to: 'students#load_students'
     get '/download_students', to: 'students#download_students'
     root :to => "dashboard#index"
@@ -27,8 +30,10 @@ Rails.application.routes.draw do
   namespace :teachers do
     resources :students
     resources :courses do
+      resources :student_actions
       get '/liveclass', to: 'live#classroom'
       post '/liveclass', to: 'live#update'
+      get '/roster', to: 'courses#roster'
     end
     get '/view_student', to: "students#view_student"
     root :to => "dashboard#index"
@@ -42,9 +47,6 @@ Rails.application.routes.draw do
     root :to => "dashboard#index"
   end
 
-
-
-  get '/login',       to: 'sessions#new'
   post '/login',      to: 'sessions#create'
   delete '/logout',   to: 'sessions#destroy'
   root :to      => 'home#go_to_dashboard', as: :dashboard_root, :constraints => AuthConstraint.new

@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h3><%= @course.subject %></h3>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Grade</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>ScholarBot Login</th>
+      <th>Dob</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course.students.each do |student| %>
+      <tr>
+        <td><%= student.id_num %></td>
+        <td><%= student.grade %></td>
+        <td><%= link_to "#{student.last_name}, #{student.first_name}", admin_student_path(student) %></td>
+        <td><%= student.email %></td>
+        <td><%= student.username %></td>
+        <td><%= student.dob %></td>
+        <td><%= student.gender %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to "Reset Password", admin_student_reset_password_path(student), method: :post %></td>
+        <% end %>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+

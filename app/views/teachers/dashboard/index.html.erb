@@ -1,6 +1,10 @@
-<h1>hey teacher</h1>
-<h2>Name: <%= current_user.first_name %></h2>
-<% current_user.courses.each do |course| %>
-	<p><%= link_to course.subject, teachers_course_liveclass_path(course) %></p>
+<% @current_user.courses.each do |course| %>
+	<div class="row">
+	  <div class="col-md-2"></div>
+	  <div class="col-md-1 live-class-period vcenter"><%= course.period.name %></div>
+	  <%= link_to teachers_course_liveclass_path(course) do %>
+		  <div class="col-md-7 click-to-liveclass vcenter"><%= course.subject %></div>
+	  <% end %>
+	  <div class="col-md-2"></div>
+	</div>
 <% end %>
-

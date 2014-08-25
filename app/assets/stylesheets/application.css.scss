@@ -37,3 +37,16 @@
 	margin-left: 2%;
 }
 
+.in-front {
+	position: relative;
+	z-index: 100;
+}
+
+.little-robot {
+	height: 50px;
+}
+
+.robot-box {
+	margin: 0 auto;
+	text-align: center;
+}

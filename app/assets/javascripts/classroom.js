@@ -41,5 +41,20 @@ $(document).ready(function(){
 		setTimeout(function() { $("#overlay").hide(); }, 800)
 		setTimeout(function() { $("#fade").hide(); }, 800)
 	}
+//===============iPad Swipe functionality==============//
+
+
+
+	$(".student-container").swipe( { swipeRight:selectStudents, swipeLeft:clearStudents, allowPageScroll:"none"} );
+
+	function selectStudents(event, direction, distance, duration, fingerCount) {
+		$('.student').removeClass('selected');
+		$('.student').addClass('selected');
+	}
+
+	function clearStudents(event, direction, distance, duration, fingerCount) {
+		$('.student').removeClass('selected');
+	}
 
 });
+

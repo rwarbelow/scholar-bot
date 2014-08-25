@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= @course.subject %> <small><%= @course.period.name %></small></h1>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table">
+	<thead>
+		<th>Date</th>
+		<th>Student</th>
+		<th>Action</th>
+		<th>Comment</th>
+		<th></th>
+		<th></th>
+	</thead>
+	<tbody>
+	<% @student_actions.each do |action| %>
+		<tr class="<%= action.action.value %>-action">
+			<td><%= action.date.strftime("%b-%d") %></td>
+			<td><%= action.enrollment.student.full_name %></td>
+			<td><%= action.action.name %></td>
+			<td><%= action.comment %></td>
+			<td><%= link_to "Edit", edit_teachers_course_student_action_path(@course, action) %></td>
+			<td><%= link_to "Destroy", teachers_course_student_action_path(@course, action), method: :delete, data: { confirm: 'Are you sure?' }  %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

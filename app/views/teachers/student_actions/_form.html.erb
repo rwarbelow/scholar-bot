@@ -1,0 +1,32 @@
+<%= form_for(@student_action, url: teachers_course_student_action_path(@student_action.enrollment.course, @student_action)) do |f| %>
+  <% if @student_action.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_action.errors.count, "error") %> prohibited this student action from being saved:</h2>
+
+      <ul>
+      <% @student_action.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :enrollment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :action_id %><br>
+    <%= f.select(:action_id, Action.all.map { |action| ["#{action.name}", action.id] }, {}, class: "chosen-select") %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

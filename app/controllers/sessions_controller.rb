@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       dashboard
     else
       flash[:errors] = "Invalid Login."
-      render 'sessions/new'
+      render 'home/index'
     end
 
 	end

@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h3><%= current_user.full_name %>'s Courses</h3>
+</div>
+<table class="table">
+	<thead>
+		<th>Period</th>
+		<th>Subject</th>
+		<th># of Students</th>
+		<th colspan="3"></th>
+	</thead>
+		<tbody>
+	<% current_user.courses.each do |course| %>
+		<tr>
+			<td><%= course.period.name %></td>
+			<td><%= link_to course.subject, teachers_course_liveclass_path(course) %></td>
+			<td><%= course.students.count %></td>
+			<td><%= link_to "Roster", teachers_course_roster_path(course) %></td>
+			<td><%= link_to "Student Actions", teachers_course_student_actions_path(course) %></td>
+		</tr>
+	<% end %>
+		</tbody>
+</table>

@@ -1,32 +1,24 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Login to ScholarBot</h4>
-        <% if flash[:notice] %>
-				  <p class="flash-notice"><%= flash[:notice] %></p>
-				<% end %>
-      </div>
-      <div class="modal-body">
-        <%= form_tag login_path do %>
-				  <% if flash[:errors] %>
-				    <p class="flash-notice"><%= flash[:errors] %></p>
-				  <% end %>
-				  <%= text_field_tag "username", nil, placeholder: "username" %>
-				  <%= password_field_tag "password", nil, placeholder: "password" %> <br> <br>
-				  <%= radio_button_tag(:type, :student) %>
-				  <%= label_tag(:student) %> <br>
-				  <%= radio_button_tag(:type, :guardian) %>
-				  <%= label_tag(:guardian) %> <br>
-				  <%= radio_button_tag(:type, :teacher) %>
-				  <%= label_tag(:teacher) %>
-				
-      </div>
-      <div class="modal-footer">
-        <%= submit_tag value="Log In", :class => "btn btn-large btn-primary" %>
-        <% end %>
-      </div>
-    </div>
+<div class="robot-box">
+  <%= image_tag 'robot.png' %>
+  <h1>Hello, I'm ScholarBot!</h1>
+<br>
+  <div>
+    <% if flash[:notice] %>
+  	  <p class="flash-notice"><%= flash[:notice] %></p>
+  	<% end %>
+  </div>
+
+  <div>
+    <%= form_tag login_path do %>
+  	  <% if flash[:errors] %>
+  	    <p class="flash-notice"><%= flash[:errors] %></p>
+  	  <% end %>
+  	  <%= text_field_tag "username", nil, placeholder: "username" %>
+  	  <%= password_field_tag "password", nil, placeholder: "password" %>
+      <%= select_tag(:type, options_for_select([['student', "student"], ['guardian', 'guardian'], ["teacher", "teacher"]], selected: :type, class: "chosen-select")) %>
+  </div> <br>
+  <div>
+    <%= submit_tag value="Log In", :class => "btn btn-large btn-primary" %>
+    <% end %>
   </div>
 </div>

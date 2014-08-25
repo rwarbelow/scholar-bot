@@ -1,9 +1,11 @@
 class Teachers::CoursesController < Teachers::BaseController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :student_actions, :roster]
 
   def index
-    sort_attribute = params[:sort].nil? ? :period_id : params[:sort]
-    @courses = Course.order(sort_attribute)
+    @courses = current_user.courses
+  end
+
+  def roster
   end
 
   def show
@@ -11,6 +13,11 @@ class Teachers::CoursesController < Teachers::BaseController
 
   def new
     @course = Course.new
+  end
+
+  def student_actions
+    limit = params[:limit] || 100
+    @student_actions = @course.student_actions.limit(limit)
   end
 
   def edit
@@ -40,7 +47,8 @@ class Teachers::CoursesController < Teachers::BaseController
 
   private
   def set_course
-    @course = current_teacher.courses.where(id: params[:id])
+    id = params[:id] || params[:course_id]
+    @course = current_teacher.courses.find_by(id: id)
   end
 
   def course_params

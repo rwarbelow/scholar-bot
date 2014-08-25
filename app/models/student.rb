@@ -18,6 +18,7 @@ class Student < ActiveRecord::Base
 	has_many :guardianships
 	has_many :guardians, through: :guardianships
 
+	default_scope { order('last_name ASC') }
 
 	before_validation :downcase_username
 	has_secure_password

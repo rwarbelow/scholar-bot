@@ -4,15 +4,15 @@ module User
 	end
 
 	def admin?
-		(self.is_a?(Teacher)) && (self.is_admin == true) ? true : false
+		(self.is_a?(Teacher)) && (self.is_admin == true)
 	end
 
 	def student?
-		true if self.is_a?(Student)
+		self.is_a?(Student)
 	end
 
 	def teacher?
-		self.is_a?(Teacher) ? true : false
+		self.is_a?(Teacher)
 	end
 
 	def full_name

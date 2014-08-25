@@ -1,0 +1,6 @@
+<h3>Edit Action for <%= @student_action.enrollment.student.full_name %></h3>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', teachers_course_student_action_path(@student_action.enrollment.course, @student_action) %> |
+<%= link_to 'Back', teachers_course_student_actions_path %>
