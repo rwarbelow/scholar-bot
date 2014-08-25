@@ -2,7 +2,10 @@ class Teachers::LiveController < Teachers::BaseController
 	before_action :set_course
 
 	def classroom
-		@actions = Action.all
+		@common_positive_actions 		= Action.common_positive_actions
+		@common_negative_actions 		= Action.common_negative_actions
+		@secondary_positive_actions = Action.secondary_positive_actions
+		@secondary_negative_actions = Action.secondary_negative_actions
 	end
 
 	def update
@@ -19,7 +22,7 @@ class Teachers::LiveController < Teachers::BaseController
 				render :json => {
 					status: :ok,
 					enrollmentIds: enrollment_ids,
-					actionType: action.name
+					actionType: action.name.capitalize
 					}.to_json
 			end
 		end

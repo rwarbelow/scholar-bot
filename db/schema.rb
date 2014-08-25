@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824085326) do
+ActiveRecord::Schema.define(version: 20140825032929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actions", force: true do |t|
+  create_table "action_core_values", force: true do |t|
     t.integer "core_value_id"
+    t.integer "action_id"
+  end
+
+  create_table "actions", force: true do |t|
+    t.integer "action_core_value_id"
     t.boolean "value"
     t.string  "name"
   end

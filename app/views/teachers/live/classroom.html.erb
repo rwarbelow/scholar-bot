@@ -4,18 +4,39 @@
 
 
 <div class="col-md-10 student-container">
-	<div class="message"></div>
 	<% @course.students.each do |student| %>
-	<div class="box student" data-enrollment-id="<%= student.enrollments.find { |e| e.course_id == @course.id }.id %>">
-		<div class="initials text-center"><%= "#{student.first_name[0]} #{student.last_name[0]}" %></div>
-		<div class="student-name text-center"><%= student.first_name.capitalize %></div><br>
-	</div>
+		<div class="box student" data-enrollment-id="<%= student.enrollments.find { |e| e.course_id == @course.id }.id %>">
+			<div class="initials text-center"><%= "#{student.first_name[0]} #{student.last_name[0]}" %></div>
+			<div class="student-name text-center"><%= student.first_name.capitalize %></div><br>
+		</div>
 	<% end %>
 </div>
 <div class="col-md-2">
-	<% @actions.each do |action| %>
-		<button class="submit" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name %></button> <br> <br>
+	<% @common_positive_actions.each do |action| %>
+		<button class="submit positive" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 	<% end %>
+	<% @common_negative_actions.each do |action| %>
+		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+	<% end %>
+	<button class="view-others">View Other Actions</button> 
 </div>
 
 <%= link_to "See student actions" %>
+
+<div class="col-md-9">
+	<div class="col-md-3">
+	<% @secondary_positive_actions.each do |action| %>
+		<button class="submit positive" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+	<% end %>
+	</div>
+	<div class="col-md-3">
+	<% @secondary_negative_actions[0..6].each do |action| %>
+		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+	<% end %>
+	</div>
+	<div class="col-md-3">
+	<% @secondary_negative_actions[7..-1].each do |action| %>
+		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+	<% end %>
+	</div>
+</div>
