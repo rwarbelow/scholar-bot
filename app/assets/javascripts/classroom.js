@@ -6,7 +6,8 @@ $(document).ready(function(){
 
 	$('.submit').click(function () {
 		$('#overlay').empty();
-		$('#fade').css("display", "block");
+		$('#grey-background').css("display", "block");
+		$('#student-action-modal').modal('hide')
 		var enrollments = $.makeArray($('.student.selected').map(function(index, student) {
 			return this.dataset.enrollmentId;
 		}));
@@ -39,7 +40,7 @@ $(document).ready(function(){
 		$('#overlay').css("display", "block");
 		$('#overlay').text(message);
 		setTimeout(function() { $("#overlay").hide(); }, 800)
-		setTimeout(function() { $("#fade").hide(); }, 800)
+		setTimeout(function() { $("#grey-background").hide(); }, 800)
 	}
 //===============iPad Swipe functionality==============//
 

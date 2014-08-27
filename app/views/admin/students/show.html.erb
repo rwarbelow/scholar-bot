@@ -70,7 +70,7 @@
 		  	</tr>
 		  	<tr>
 			    <td><%= f.label "Date of Birth" %></td>
-			    <td><%= f.date_select(:dob, start_year: 1995) %></td>
+			    <td><%= f.date_select(:dob, start_year: 1995, :order => [:month, :day, :year]) %></td>
 		  	</tr>
 		  	<tr>
 			    <td><%= f.label :grade %></td>

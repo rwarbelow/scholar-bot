@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20140825032929) do
   end
 
   create_table "actions", force: true do |t|
-    t.integer "action_core_value_id"
     t.boolean "value"
     t.string  "name"
   end

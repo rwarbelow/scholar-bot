@@ -10,7 +10,8 @@ class Teachers::StudentActionsController < Teachers::BaseController
 	end
 
 	def new
-		@student_action = StudentAction.new
+		@course = Course.find(params[:course_id])
+		@student_action = @course.student_actions.new
 	end
 
 	def edit
@@ -26,7 +27,6 @@ class Teachers::StudentActionsController < Teachers::BaseController
 	end
 
 	def update
-		p params
 		if @student_action.update(student_action_params)
 			redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), notice: 'Action was successfully updated.'
 		else

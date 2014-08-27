@@ -56,6 +56,10 @@ class Student < ActiveRecord::Base
 		end
 	end
 
+	def respect_actions
+		student_actions
+	end
+
 	def create_enrollments
 		Period.all.each do |p|
 			enrollments.create(period_id: p.id)

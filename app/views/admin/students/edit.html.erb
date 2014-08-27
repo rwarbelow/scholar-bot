@@ -43,7 +43,7 @@
   </div>
   <div class="field">
     <%= f.label "Date of Birth" %><br>
-    <%= f.date_select(:dob, start_year: 1995) %>
+    <%= f.date_select(:dob, start_year: 1995, :order => [:month, :day, :year]) %>
   </div>
   <div class="field">
     <%= f.label :grade %><br>

@@ -1,1 +1,4 @@
 <h1>welcome, <%= "#{current_user.first_name} #{current_user.last_name}" %></h1>
+<% current_user.student_actions.each do |s| %>
+<p><%= s %></p>
+<% end %>

@@ -1,4 +1,7 @@
 class Action < ActiveRecord::Base
+	has_many :action_core_values
+	has_many :core_values, through: :action_core_values
+	
 	def self.common_positive_actions
 		common_positive_actions = []
 		common_positive_actions << Action.find_by(name: "participation")

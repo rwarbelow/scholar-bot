@@ -1,6 +1,6 @@
 
 <div id="overlay"></div>
-<div id="fade"></div>
+<div id="grey-background"></div>
 
 
 <div class="col-md-10 student-container">
@@ -13,30 +13,33 @@
 </div>
 <div class="col-md-2">
 	<% @common_positive_actions.each do |action| %>
-		<button class="submit positive" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+		<button class="submit btn btn-primary btn-lg btn-primary student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 	<% end %>
 	<% @common_negative_actions.each do |action| %>
-		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+		<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 	<% end %>
-	<button class="view-others">View Other Actions</button> 
+	<button class="btn btn-danger btn-lg student-action-button" data-toggle="modal" data-target=".bs-example-modal-lg">Other Actions</button>
+	<%= button_to "View Action History", teachers_course_student_actions_path(@course.id), class: "btn btn-info btn-sm student-action-button" %>
 </div>
 
-<%= link_to "See student actions" %>
-
-<div class="col-md-9">
-	<div class="col-md-3">
-	<% @secondary_positive_actions.each do |action| %>
-		<button class="submit positive" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
-	<% end %>
-	</div>
-	<div class="col-md-3">
-	<% @secondary_negative_actions[0..6].each do |action| %>
-		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
-	<% end %>
-	</div>
-	<div class="col-md-3">
-	<% @secondary_negative_actions[7..-1].each do |action| %>
-		<button class="submit negative" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
-	<% end %>
-	</div>
+<div class="modal bs-example-modal-lg" id="student-action-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="col-md-4">
+				<% @secondary_positive_actions.each do |action| %>
+					<button class="submit btn btn-primary btn-lg btn-primary student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+				<% end %>
+			</div>
+			<div class="col-md-4">
+				<% @secondary_negative_actions[0..6].each do |action| %>
+					<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+				<% end %>
+			</div>
+			<div class="col-md-4">
+				<% @secondary_negative_actions[7..-1].each do |action| %>
+					<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
+				<% end %>
+			</div>	
+    </div>
+  </div>
 </div>
