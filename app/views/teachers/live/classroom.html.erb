@@ -12,10 +12,10 @@
 	<% end %>
 </div>
 <div class="col-md-2">
-	<% @common_positive_actions.each do |action| %>
+	<% @actions.common_positive_actions.each do |action| %>
 		<button class="submit btn btn-primary btn-lg btn-primary student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 	<% end %>
-	<% @common_negative_actions.each do |action| %>
+	<% @actions.common_negative_actions.each do |action| %>
 		<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 	<% end %>
 	<button class="btn btn-danger btn-lg student-action-button" data-toggle="modal" data-target=".bs-example-modal-lg">Other Actions</button>
@@ -26,17 +26,17 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="col-md-4">
-				<% @secondary_positive_actions.each do |action| %>
+				<% @actions.secondary_positive_actions.each do |action| %>
 					<button class="submit btn btn-primary btn-lg btn-primary student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 				<% end %>
 			</div>
 			<div class="col-md-4">
-				<% @secondary_negative_actions[0..6].each do |action| %>
+				<% @actions.secondary_negative_actions[0..6].each do |action| %>
 					<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 				<% end %>
 			</div>
 			<div class="col-md-4">
-				<% @secondary_negative_actions[7..-1].each do |action| %>
+				<% @actions.secondary_negative_actions[7..-1].each do |action| %>
 					<button class="submit btn btn-primary btn-lg btn-warning student-action-button" data-action-type="<%= action.name %>" data-action-id="<%= action.id %>" data-course-id="<%= @course.id %>"><%= action.name.capitalize %></button> <br> <br>
 				<% end %>
 			</div>	

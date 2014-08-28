@@ -2,3 +2,15 @@
 <% current_user.student_actions.each do |s| %>
 <p><%= s %></p>
 <% end %>
+<% current_user.enrollments.each do |e| %>
+	<%= e.id %>
+<% end %>
+
+<% CoreValue.all.each do |cv| %>
+	<p><%= cv.name %></p>
+	<% cv.actions.each do |action| %>
+		<% action.student_actions.select { |sa| sa.enrollment}.each do |sa| %>
+		<p><%= sa %></p>
+		<% end %>
+	<% end %>
+<% end %>

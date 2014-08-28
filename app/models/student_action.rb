@@ -1,8 +1,10 @@
 class StudentAction < ActiveRecord::Base
 	belongs_to :enrollment
-	belongs_to :student
 	belongs_to :action
 	belongs_to :course
+
+	has_one :student, through: :enrollment
+	has_one :action_core_value, through: :action
 
 	default_scope { order('updated_at DESC') }
 
@@ -10,8 +12,8 @@ class StudentAction < ActiveRecord::Base
 		action.name
 	end
 
-	def core_values
-		action.core_values
+	def action_idcore_values
+		action.action_core_values
 	end
 end
 

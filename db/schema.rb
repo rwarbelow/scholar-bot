@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140825032929) do
 
   create_table "actions", force: true do |t|
     t.boolean "value"
+    t.string  "grouping"
     t.string  "name"
   end
 

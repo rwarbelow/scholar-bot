@@ -2,10 +2,7 @@ class Teachers::LiveController < Teachers::BaseController
 	before_action :set_course
 
 	def classroom
-		@common_positive_actions 		= Action.common_positive_actions
-		@common_negative_actions 		= Action.common_negative_actions
-		@secondary_positive_actions = Action.secondary_positive_actions
-		@secondary_negative_actions = Action.secondary_negative_actions
+		@actions 		= Action.all
 	end
 
 	def update
