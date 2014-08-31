@@ -7,5 +7,9 @@ class Action < ActiveRecord::Base
 	scope :common_negative_actions, -> { where(value: false, grouping: "primary") }
 	scope :secondary_positive_actions, -> { where(value: true, grouping: "secondary") }
 	scope :secondary_negative_actions, -> { where(value: false, grouping: "secondary") }
+
+	# def core_values
+	# 	action.core_values
+	# end
 end
 

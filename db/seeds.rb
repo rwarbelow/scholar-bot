@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Period.create(name:"All Team")
+Period.create(name:"Team")
 (1..7).to_a.each do |p|
 	Period.create(name:"#{p}")
 end
@@ -109,9 +109,9 @@ resdist 	  = Action.create(grouping: "secondary", value: true, name: "resisting 
 							ActionCoreValue.create(core_value_id: perseverance.id, action_id: resdist.id)
 							ActionCoreValue.create(core_value_id: empowerment.id, action_id: resdist.id)
 
-respect 	  = Action.create(grouping: "secondary", value: true, name: "respecting others")
-							ActionCoreValue.create(core_value_id: respect.id, action_id: respect.id)
-							ActionCoreValue.create(core_value_id: team.id, action_id: respect.id)
+respecting 	  = Action.create(grouping: "secondary", value: true, name: "respecting others")
+							ActionCoreValue.create(core_value_id: respect.id, action_id: respecting.id)
+							ActionCoreValue.create(core_value_id: team.id, action_id: respecting.id)
 
 teamwork    = Action.create(grouping: "secondary", value: true, name: "teamwork")
 							ActionCoreValue.create(core_value_id: respect.id, action_id: teamwork.id)

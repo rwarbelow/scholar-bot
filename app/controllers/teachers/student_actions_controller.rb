@@ -2,8 +2,9 @@ class Teachers::StudentActionsController < Teachers::BaseController
 	before_action :set_student_action, only: [:show, :edit, :update, :destroy]
 
 	def index
+		limit = params[:limit] || 100
 		@course = current_teacher.courses.find_by(id: params[:course_id])
-		@student_actions = @course.student_actions
+    @student_actions = @course.student_actions.limit(limit)
 	end
 
 	def show
@@ -20,7 +21,8 @@ class Teachers::StudentActionsController < Teachers::BaseController
 	def create
 		@student_action = StudentAction.new(student_action_params)
 		if @student_action.save
-			redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), notice: 'Action was successfully created.'
+			redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), 
+									notice: 'Action was successfully created.'
 		else
 			render :new
 		end
@@ -28,7 +30,8 @@ class Teachers::StudentActionsController < Teachers::BaseController
 
 	def update
 		if @student_action.update(student_action_params)
-			redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), notice: 'Action was successfully updated.'
+			redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), 
+									notice: 'Action was successfully updated.'
 		else
 			render :edit
 		end
@@ -36,7 +39,8 @@ class Teachers::StudentActionsController < Teachers::BaseController
 
 	def destroy
 		@student_action.destroy
-		redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), notice: 'Action was successfully destroyed.'
+		redirect_to teachers_course_student_actions_path(@student_action.enrollment.course), 
+								notice: 'Action was successfully destroyed.'
 	end
 
 	private

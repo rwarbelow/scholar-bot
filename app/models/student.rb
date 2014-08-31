@@ -56,8 +56,25 @@ class Student < ActiveRecord::Base
 		end
 	end
 
-	def respect_actions
-		student_actions
+	def positive_actions_in(core_value_id, limit = 100)
+		student_actions.limit(limit).select do  |sa| 
+			action = sa.action
+			sa if action.core_values.where(id: core_value_id).any? && action.value == true
+		end
+	end
+
+	def negative_actions_in(core_value_id, limit = 100)
+		student_actions.limit(limit).select do  |sa| 
+			action = sa.action
+			sa if action.core_values.where(id: core_value_id).any? && action.value == false
+		end
+	end
+
+	def all_actions_in(core_value_id, limit = 100)
+		student_actions.limit(limit).select do  |sa| 
+			action = sa.action
+			sa if action.core_values.where(id: core_value_id).any?
+		end
 	end
 
 	def create_enrollments

@@ -1,7 +1,7 @@
 .box {
 	height: 80px;
 	width: 80px;
-	background-color: #BBF29B;
+	background-color: #5AE85D;
 	margin: 10px;
 	float: left;
 	border-radius: 10px;
@@ -33,7 +33,7 @@ input[type="number"] {
 
 .selected {
 	box-shadow: 5px 5px 8px gray;
-	background-color: Orange;
+	background-color: #F1F75C;
 	font-weight: bold;
 	font-size: 18px;
 }
@@ -58,8 +58,8 @@ input[type="number"] {
 }
 
 .positive {
-	background: #9CD9FF;
-	color: #404242;
+	background: #6EC2FA;
+	color: white;
 
 }
 
@@ -123,4 +123,9 @@ input[type="number"] {
 	height: 60px;
 	text-align: center;
 	padding-top: 13px;
+}
+
+.action-content {
+	height: 470px;
+	padding: 20px;
 }

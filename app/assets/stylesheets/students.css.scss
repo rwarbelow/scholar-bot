@@ -1,3 +1,36 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {
+	width: 190px;
+	height: 190px;
+	margin: 0 auto;
+	padding: 30px;
+	border-radius: 50%;
+	font-size: 52px;
+	font-family: Alegreya Sans;
+	padding-top: 10%;
+	-webkit-font-smoothing: antialiased;
+}
+
+.blue {
+	border: 13px solid #6EC2FA;
+}
+
+.green {
+	border: 13px solid #7CF55F;
+}
+
+.yellow {
+	border: 13px solid #F5E27A;
+}
+
+.red {
+	border: 13px solid #F78D9F;
+}
+
+.row-padded {
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
