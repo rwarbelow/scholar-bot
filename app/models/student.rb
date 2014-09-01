@@ -17,6 +17,7 @@ class Student < ActiveRecord::Base
 	has_many :student_actions, through: :enrollments
 	has_many :guardianships
 	has_many :guardians, through: :guardianships
+	has_many :scholar_hours
 
 	default_scope { order('last_name ASC') }
 
@@ -57,23 +58,32 @@ class Student < ActiveRecord::Base
 	end
 
 	def positive_actions_in(core_value_id, limit = 50)
-		student_actions.limit(limit).select do  |sa| 
-			action = sa.action
-			sa if action.core_values.where(id: core_value_id).any? && action.value == true
+		student_actions.limit(limit).select do |sa| 
+			sa.action.core_values.where(id: core_value_id).any? && sa.action.value == true
 		end
 	end
 
 	def negative_actions_in(core_value_id, limit = 50)
-		student_actions.limit(limit).select do  |sa| 
-			action = sa.action
-			sa if action.core_values.where(id: core_value_id).any? && action.value == false
+		student_actions.limit(limit).select do |sa| 
+			sa.action.core_values.where(id: core_value_id).any? && sa.action.value == false
 		end
 	end
 
 	def all_actions_in(core_value_id, limit = 50)
-		student_actions.limit(limit).select do  |sa| 
-			action = sa.action
-			sa if action.core_values.where(id: core_value_id).any?
+		student_actions.limit(limit).select do |sa| 
+			sa.action.core_values.where(id: core_value_id).any?
+		end
+	end
+
+	def all_negative_actions(limit = 100)
+		student_actions.limit(limit).select do |sa| 
+			sa.action.value == false
+		end
+	end
+
+	def all_positive_actions(limit = 100)
+		student_actions.limit(limit).select do |sa| 
+			sa.action.value == true
 		end
 	end
 

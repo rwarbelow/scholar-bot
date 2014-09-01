@@ -5,6 +5,7 @@ class CreateStudentActions < ActiveRecord::Migration
     	t.integer :action_id
     	t.text 		:comment
     	t.date 		:date
+    	t.integer :scholar_hour_id
 
     	t.timestamps
     end
