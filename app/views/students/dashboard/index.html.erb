@@ -1,27 +1,5 @@
 <div class="row text-center"><h1>Hello, <%= "#{current_user.first_name}" %>!</h1></div>
 
-
-<!-- <h1>Welcome, <%= "#{current_user.first_name} #{current_user.last_name}" %></h1>
-<% CoreValue.all.each do |cv| %>
-	<h3><%= cv.name %></h3>
-	<% posarray = [] %>
-	<% negarray = [] %>
-	<% cv.actions.each do |action| %>
-		<% action.student_actions.select { |sa| sa.student == current_user }.each do |sa| %>
-			<% posarray << sa if sa.action.value == true %>
-			<% negarray << sa if sa.action.value == false %>
-		<% end %>
-			
-	<% end %>
-	<h5>Positive</h5>
-			<% posarray.each do |p| %>
-				<p><%= p.action.name %></p>
-			<% end %>
-			<h5>Negative</h5>
-			<% negarray.each do |p| %>
-				<p><%= p.action.name %></p>
-			<% end %>
-<% end %> -->
 <div>
 	<% @core_values.each_slice(3) do |three| %>
 		<div class="row row-padded">
@@ -30,11 +8,13 @@
 					<% @positive = @student.positive_actions_in(cv.id).count || 0 %>
 					<% @percentage = @total != 0 ? (@positive.to_f / @total.to_f * 100).round(0) : 100 %>	  
 				  <div class="col-md-4 text-center">
-				  	<div class="wrapper <%= color_for(@percentage)%> text-center">
-							<%= @percentage %>%
-						</div>
+				  	<%= link_to students_core_value_path(cv.id), class: "cv-link" do %>
+					  	<div class="wrapper <%= color_for(@percentage)%> text-center">
+								<%= @percentage %>%
+							</div>
+						 <% end %>
 			  		<h4><%= cv.name %></h4>
-	    			<a data-toggle="modal" data-target="#cv<%= cv.id %>">Actions</a>	
+	    			<a data-toggle="modal" data-target="#cv<%= cv.id %>">Change your score!</a>	
 				  </div>
 			  <% end %>
 			</div>

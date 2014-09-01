@@ -56,21 +56,21 @@ class Student < ActiveRecord::Base
 		end
 	end
 
-	def positive_actions_in(core_value_id, limit = 100)
+	def positive_actions_in(core_value_id, limit = 50)
 		student_actions.limit(limit).select do  |sa| 
 			action = sa.action
 			sa if action.core_values.where(id: core_value_id).any? && action.value == true
 		end
 	end
 
-	def negative_actions_in(core_value_id, limit = 100)
+	def negative_actions_in(core_value_id, limit = 50)
 		student_actions.limit(limit).select do  |sa| 
 			action = sa.action
 			sa if action.core_values.where(id: core_value_id).any? && action.value == false
 		end
 	end
 
-	def all_actions_in(core_value_id, limit = 100)
+	def all_actions_in(core_value_id, limit = 50)
 		student_actions.limit(limit).select do  |sa| 
 			action = sa.action
 			sa if action.core_values.where(id: core_value_id).any?

@@ -3,6 +3,7 @@ class Enrollment < ActiveRecord::Base
 	belongs_to :period
 	belongs_to :course
 	has_many :student_actions
+	belongs_to :teacher
 	default_scope { order('period_id ASC') }
 
 	def self.available_for(course)

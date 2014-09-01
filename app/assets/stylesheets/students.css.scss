@@ -34,3 +34,22 @@
 	margin-bottom: 30px;
 	margin-top: 20px;
 }
+
+.cv-link:link {
+    color: black;
+}
+
+/* visited link */
+.cv-link:visited {
+    color: black;
+}
+
+/* mouse over link */
+.cv-link:hover {
+    text-decoration: none;
+}
+
+/* selected link */
+.cv-link:active {
+    color: #EA5CF7;
+}
