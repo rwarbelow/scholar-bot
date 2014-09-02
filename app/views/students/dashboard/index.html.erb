@@ -24,7 +24,7 @@
       <br><br>
       <h1>COLLEGE COUNTDOWN</h1>
       <% now = Date.today %>
-			<% target = Date.civil((Date.today.strftime("%Y").to_i + (12 - current_user.grade.to_i)), 8, 25) %>
+			<% target = Date.civil((Date.today.strftime("%Y").to_i + (13 - current_user.grade.to_i)), 8, 25) %>
 			<p class="countdown"><%= (target - now).to_i %></p>
 			<p class="days">days!</p>
     </div>
