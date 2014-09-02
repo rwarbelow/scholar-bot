@@ -1,6 +1,3 @@
-<% if current_admin %>
-<div class="col-md-2 delete-link"><%= button_to 'Delete Student', admin_student_path(@student), method: :delete, class: "btn btn-small btn-danger", data: { confirm: 'Are you sure?' } %></div>
-<% end %>
 <div class="page-header">
   <h1><%= "#{@student.first_name} #{@student.last_name}" %> <small>grade <%= @student.grade %></small></h1>
 	<h5><%= "#{pluralize(@student.unserved_scholar_hours.count, 'unserved scholar hour')}"%></h5>

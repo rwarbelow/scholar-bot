@@ -26,6 +26,7 @@
 				<td><%= sh.reason %></td>
 				<td><%= sh.description %></td>
 				<td><%= link_to "Edit", edit_teachers_scholar_hour_path(sh.id) %></td>
+				<td><%= link_to "Destroy", teachers_scholar_hour_path(sh.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<td><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : link_to("Complete", teachers_scholar_hour_complete_path(sh), method: :post) %></td>
 			</tr>
 			<% end %>
