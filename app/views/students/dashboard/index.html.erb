@@ -3,16 +3,6 @@
 	<p>You have <b><%= link_to "#{pluralize(current_user.unserved_scholar_hours.count, 'unserved scholar hour')}", students_scholar_hours_path, class: 'cv-link' %></b> and <b><%= link_to "#{pluralize(current_user.unserved_procedure_practices.count, 'unserved procedure practice')}", students_procedure_practices_path, class: 'cv-link' %></b>.</p>
 </div>
 
-<!-- <div class="bs-example">
-  <div class="alert alert-warning text-center" role="alert">
-    <h4>Oh snap! You got an error!</h4>
-    <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-    <button type="button" class="btn btn-primary" data-dismiss="alert">Close</button>
-  </div>
-</div> -->
-
-
-
 <div class="modal" id="collegeCountdown" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content text-center">
