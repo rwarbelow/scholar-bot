@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   namespace :students do
     resources :core_values, only: [:show]
     resources :scholar_hours, only: [:index, :show]
+    resources :procedure_practices, only: [:index, :show]
     root :to => "dashboard#index"
   end
 

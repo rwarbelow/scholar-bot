@@ -18,6 +18,7 @@ class Student < ActiveRecord::Base
 	has_many :guardianships
 	has_many :guardians, through: :guardianships
 	has_many :scholar_hours
+	has_many :procedure_practices
 
 	default_scope { order('last_name ASC') }
 
@@ -111,5 +112,8 @@ class Student < ActiveRecord::Base
 
 	def unserved_scholar_hours
 		scholar_hours.where(date_served: nil)
+	end
+	def unserved_procedure_practices
+		procedure_practices.where(date_served: nil)
 	end
 end

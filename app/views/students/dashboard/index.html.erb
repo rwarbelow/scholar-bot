@@ -1,6 +1,6 @@
 <div class="row text-center">
 	<h1 class="hello-header">Hello, <%= "#{current_user.first_name}" %>!</h1>
-	<h5><%= link_to "You have #{pluralize(current_user.unserved_scholar_hours.count, 'unserved scholar hour')}.", students_scholar_hours_path, class: 'cv-link' %></h5>
+	<p>You have <b><%= link_to "#{pluralize(current_user.unserved_scholar_hours.count, 'unserved scholar hour')}", students_scholar_hours_path, class: 'cv-link' %></b> and <b><%= link_to "#{pluralize(current_user.unserved_procedure_practices.count, 'unserved procedure practice')}", students_procedure_practices_path, class: 'cv-link' %></b>.</p>
 </div>
 
 <div>
