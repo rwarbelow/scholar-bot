@@ -31,7 +31,10 @@ Rails.application.routes.draw do
     resources :students do
       resources :core_values, only: [:show]
     end
-    resources :scholar_hours
+    get '/scholar_hours/completed', to: 'scholar_hours#completed'
+    resources :scholar_hours do 
+      post '/complete', to: 'scholar_hours#complete'
+    end
     resources :courses do
       resources :student_actions
       get '/liveclass', to: 'live#classroom'

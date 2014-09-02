@@ -17,4 +17,8 @@ class ScholarHour < ActiveRecord::Base
 	def self.unserved
 		all.select(&:unserved?).sort_by { |sh| [sh.student.last_name, sh.date_assigned] }
 	end
+
+	def self.completed
+		all.select(&:served?).sort_by { |sh| [sh.student.last_name, sh.date_assigned] }
+	end
 end

@@ -17,12 +17,27 @@ class Teachers::ScholarHoursController < Teachers::BaseController
   end
 
   def edit
+    @scholar_hour = ScholarHour.find(params[:id])
   end
 
   def update
+    @scholar_hour = ScholarHour.find(params[:id])
+    @scholar_hour.update(scholar_hour_params)
+    redirect_to teachers_scholar_hours_path
   end
 
   def destroy
+  end
+
+  def complete
+    @scholar_hour = ScholarHour.find(params[:scholar_hour_id])
+    @scholar_hour.date_served = Date.today
+    @scholar_hour.save
+    redirect_to teachers_scholar_hours_path
+  end
+
+  def completed
+    @completed_scholar_hours = ScholarHour.completed
   end
 
   private

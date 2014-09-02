@@ -1,12 +1,12 @@
 <div class="col-md-10"></div>
 <div class="col-md-2">
 	<%= link_to "Create New Scholar Hour", new_teachers_scholar_hour_path %> <br>
-	<%= link_to "View Served Scholar Hours", teachers_scholar_hours_completed_path %>
+	<%= link_to "View Unserved Scholar Hours", teachers_scholar_hours_path %>
 </div>
 
 <div class="col-md-1"></div>
 <div class="col-md-10">
-	<h3>Unserved Scholar Hours</h3>
+	<h3>Completed Scholar Hours</h3>
 	<table class="table">
 		<thead>
 			<th>Student</th>
@@ -14,19 +14,19 @@
 			<th>Staff</th>
 			<th>Reason</th>
 			<th>Notes</th>
-			<th></th>
+			<th>Date Completed</th>
 			<th></th>
 		</thead>
 		<tbody>
-			<% @unserved_scholar_hours.each do |sh| %>
+			<% @completed_scholar_hours.each do |sh| %>
 			<tr>
 				<td><%= sh.student.first_name %> <%= sh.student.last_name %></td>
 				<td><%= sh.date_assigned.strftime('%a, %b %e') %></td>
 				<td><%= sh.teacher.last_name %></td>
 				<td><%= sh.reason %></td>
 				<td><%= sh.description %></td>
+				<td><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : button_to("Complete", teachers_scholar_hour_complete_path(sh), class: "btn btn-sm btn-primary") %></td>
 				<td><%= link_to "Edit", edit_teachers_scholar_hour_path(sh.id) %></td>
-				<td><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : link_to("Complete", teachers_scholar_hour_complete_path(sh), method: :post) %></td>
 			</tr>
 			<% end %>
 		</tbody>

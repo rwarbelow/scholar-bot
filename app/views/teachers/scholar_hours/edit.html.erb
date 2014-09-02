@@ -1,0 +1,53 @@
+<h1 class="text-center">Create New Scholar Hour</h1>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <%= form_for @scholar_hour, url: teachers_scholar_hour_path(@scholar_hour.id), role: "form" do |f| %>
+    <% if @scholar_hour.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@scholar_hour.errors.count, "error") %> prohibited this student action from being saved:</h2>
+
+        <ul>
+        <% @scholar_hour.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :student %><br>
+        <%= f.collection_select(:student_id, Student.all, :id, :full_name, { include_blank: true, :required => true },  
+                        { class: 'chosen-select' })  %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :date_assigned %><br>
+        <%= f.date_select :date_assigned, :order => [:month, :day, :year] %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :teacher %><br>
+        <%= current_teacher_selector(f) %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :reason %><br>
+        <%= f.text_field :reason, class: "form-control" %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="form-group">
+        <%= f.label :description %><br>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-3"></div>
