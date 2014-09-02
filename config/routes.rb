@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     resources :scholar_hours do 
       post '/complete', to: 'scholar_hours#complete'
     end
+    get '/procedure_practices/completed', to: 'procedure_practices#completed'
+    resources :procedure_practices do 
+      post '/complete', to: 'procedure_practices#complete'
+    end
     resources :courses do
       resources :student_actions
       get '/liveclass', to: 'live#classroom'

@@ -1,0 +1,36 @@
+<div class="col-md-10"></div>
+<div class="col-md-2">
+	<%= link_to "Create New Procedure", new_teachers_procedure_practice_path %> <br>
+	<%= link_to "View Unserved Procedures", teachers_procedure_practices_path %>
+</div>
+
+<div class="col-md-1"></div>
+<div class="col-md-10">
+	<h3>Completed Procedure Practices</h3>
+	<table class="table">
+		<thead>
+			<th>Student</th>
+			<th>Date Assigned</th>
+			<th>Staff</th>
+			<th>Procedure</th>
+			<th>Notes</th>
+			<th>Date Completed</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<% @completed_procedure_practices.each do |pp| %>
+			<tr>
+				<td><%= pp.student.first_name %> <%= pp.student.last_name %></td>
+				<td><%= pp.date_assigned.strftime('%a, %b %e') %></td>
+				<td><%= pp.teacher.last_name %></td>
+				<td><%= pp.procedure %></td>
+				<td><%= pp.description %></td>
+				<td><%= pp.served? ? pp.date_served.strftime('%a, %b %e') : button_to("Complete", teachers_procedure_practice_complete_path(pp), class: "btn btn-sm btn-primary") %></td>
+				<td><%= link_to "Edit", edit_teachers_procedure_practice_path(pp.id) %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="col-md-1"></div>

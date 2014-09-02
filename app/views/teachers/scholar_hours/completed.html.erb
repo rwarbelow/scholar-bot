@@ -25,7 +25,7 @@
 				<td><%= sh.teacher.last_name %></td>
 				<td><%= sh.reason %></td>
 				<td><%= sh.description %></td>
-				<td><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : button_to("Complete", teachers_scholar_hour_complete_path(sh), class: "btn btn-sm btn-primary") %></td>
+				<td><%= sh.date_served.strftime('%a, %b %e') %></td>
 				<td><%= link_to "Edit", edit_teachers_scholar_hour_path(sh.id) %></td>
 			</tr>
 			<% end %>

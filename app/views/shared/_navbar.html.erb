@@ -9,7 +9,7 @@
       <ul class="nav navbar-nav">
         <% if current_user.teacher? %>
           <li><%= link_to "Dashboard", teachers_root_path%></li>
-          <li><%= link_to "Scholar Index", teachers_courses_path%></li>
+          <li><%= link_to "Procedure Practice", teachers_procedure_practices_path%></li>
           <li><%= link_to "Scholar Hours", teachers_scholar_hours_path %></li>
         <% elsif current_user.student? %>
           <li><%= link_to "Dashboard", students_root_path%></li>
