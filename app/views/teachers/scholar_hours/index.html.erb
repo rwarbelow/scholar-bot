@@ -1,0 +1,54 @@
+<div class="col-md-10"></div>
+<div class="col-md-2">
+	<%= link_to "Create New Scholar Hour", new_teachers_scholar_hour_path %> <br>
+	<%= link_to "View Served Scholar Hours" %>
+</div>
+
+<div class="col-md-6">
+	<h3>Unserved Scholar Hours</h3>
+	<table class="table">
+		<thead>
+			<th>Student</th>
+			<th>Date Assigned</th>
+			<th>Staff</th>
+			<th>Reason</th>
+			<th>Notes</th>
+			<th>Served?</th>
+		</thead>
+		<tbody>
+			<% @unserved_scholar_hours.each do |sh| %>
+				<tr>
+					<td><%= sh.student.first_name %> <%= sh.student.last_name %></td>
+					<td><%= sh.date_assigned.strftime('%a, %b %e') %></td>
+					<td><%= sh.teacher.last_name %></td>
+					<td><%= sh.reason %></td>
+					<td><%= sh.description %></td>
+					<td class="sh-<%= sh.served? %>"><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : "No" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="col-md-6">
+	<h3>Assigned By Me</h3>
+	<table class="table">
+		<thead>
+			<th>Student</th>
+			<th>Date Assigned</th>
+			<th>Reason</th>
+			<th>Notes</th>
+			<th>Served?</th>
+		</thead>
+		<tbody>
+			<% current_teacher.scholar_hours.select(&:unserved?).each do |sh| %>
+				<tr>
+					<td><%= sh.student.first_name %> <%= sh.student.last_name %></td>
+					<td><%= sh.date_assigned.strftime('%a, %b %e') %></td>
+					<td><%= sh.reason %></td>
+					<td><%= sh.description %></td>
+					<td class="sh-<%= sh.served? %>"><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : "No" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

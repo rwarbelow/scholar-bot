@@ -10,6 +10,7 @@ class Teacher < ActiveRecord::Base
 	has_many :courses
 	has_many :enrollments, through: :courses
 	has_many :students, through: :enrollments
+	has_many :scholar_hours
 														
 	has_secure_password
 	before_validation :downcase_username

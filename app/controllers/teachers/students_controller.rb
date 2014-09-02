@@ -6,7 +6,7 @@ class Teachers::StudentsController < Teachers::BaseController
 	end
 
 	def show
-
+		@core_values = CoreValue.all
 	end
 
 	private

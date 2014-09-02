@@ -11,6 +11,7 @@
 	font-size: 52px;
 	font-family: Alegreya Sans;
 	padding-top: 10%;
+	margin-bottom: 10px;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -36,21 +37,41 @@
 }
 
 .cv-link:link {
-    color: black;
+	color: black;
 }
 
 /* visited link */
 .cv-link:visited {
-    color: black;
+	color: black;
 }
 
 /* mouse over link */
 .cv-link:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 /* selected link */
 .cv-link:active {
-    color: #636363;
-    text-decoration: underline;
+	color: #636363;
+	text-decoration: underline;
+}
+
+.style-as-link {
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.pos-actions {
+	color: #19A0FA;
+}
+
+.neg-actions {
+	color: #F54562;
+}
+
+.hello-header {
+	margin-top: 3px;
 }

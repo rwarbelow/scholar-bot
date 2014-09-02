@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140901203009) do
     t.string  "description"
     t.date    "date_assigned"
     t.date    "date_served"
+    t.integer "teacher_id"
   end
 
   create_table "student_actions", force: true do |t|

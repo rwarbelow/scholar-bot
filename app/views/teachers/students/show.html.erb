@@ -1,9 +1,32 @@
-
-<div class="col-md-10"><%= link_to 'Back', admin_students_path %></div>
+<% if current_admin %>
 <div class="col-md-2 delete-link"><%= button_to 'Delete Student', admin_student_path(@student), method: :delete, class: "btn btn-small btn-danger", data: { confirm: 'Are you sure?' } %></div>
+<% end %>
 <div class="page-header">
   <h1><%= "#{@student.first_name} #{@student.last_name}" %> <small>grade <%= @student.grade %></small></h1>
+	<h5><%= "#{pluralize(@student.unserved_scholar_hours.count, 'unserved scholar hour')}"%></h5>
 </div>
+
+
+<div>
+	<% @core_values.each_slice(3) do |three| %>
+		<div class="row row-padded">
+				<% three.each do |cv| %>
+		  		<% @total = @student.all_actions_in(cv.id).count || 0 %>
+					<% @positive = @student.positive_actions_in(cv.id).count || 0 %>
+					<% @percentage = @total != 0 ? (@positive.to_f / @total.to_f * 100).round(0) : 100 %>	  
+				  <div class="col-md-4 text-center">
+				  	<%= link_to teachers_student_core_value_path(@student.id, cv.id), class: "cv-link" do %>
+					  	<div class="wrapper <%= color_for(@percentage)%> text-center">
+								<%= @percentage %>%
+							</div>
+						 <% end %>
+			  		<h5><%= cv.name %></h5>
+				  </div>
+			  <% end %>
+			</div>
+	<% end %>
+</div>
+
 
 <p id="notice"><%= notice %></p>
 
@@ -26,7 +49,9 @@
 						<% end %>
 					</tbody>
 				</table>
+				<% if current_admin %>
 	    <button type="submit" class="btn btn-primary enrollment-button">Update Course Schedule</button>
+	    <% end %>
 	<% end %>
 </div>
 
@@ -82,7 +107,9 @@
 		    </tr>
 		  </tbody>
 	  </table>
-	    <%= f.submit class: "btn btn-primary" %>
+		  <% if current_admin %>
+		    <%= f.submit class: "btn btn-primary" %>
+	    <% end %>
 	<% end %>
 </div>
 

@@ -1,4 +1,7 @@
-<div class="row text-center"><h1>Hello, <%= "#{current_user.first_name}" %>!</h1></div>
+<div class="row text-center">
+	<h1 class="hello-header">Hello, <%= "#{current_user.first_name}" %>!</h1>
+	<h5><%= link_to "You have #{pluralize(current_user.unserved_scholar_hours.count, 'unserved scholar hour')}.", students_scholar_hours_path, class: 'cv-link' %></h5>
+</div>
 
 <div>
 	<% @core_values.each_slice(3) do |three| %>
@@ -13,7 +16,7 @@
 								<%= @percentage %>%
 							</div>
 						 <% end %>
-			  		<a data-toggle="modal" data-target="#cv<%= cv.id %>"><h4><%= cv.name %></h4></a>
+			  		<button class="style-as-link" data-toggle="modal" data-target="#cv<%= cv.id %>"><%= cv.name %></button>
 				  </div>
 			  <% end %>
 			</div>
@@ -21,7 +24,7 @@
 </div>
 
 <% @core_values.each do |cv| %>
-<div class="modal fade" id="cv<%= cv.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="cv<%= cv.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -29,19 +32,23 @@
         <h4 class="modal-title" id="myModalLabel"><%= cv.name %></h4>
       </div>
       <div class="modal-body">
-			<h5>Increase Your Score</h5>
-			<% cv.actions.positive.each do |action| %>
-				<ul>
-					<li><%= action.name %></li>
-				</ul>
-			<% end %>
-			<br>
-			<h5>Decrease Your Score</h5>
-			<% cv.actions.negative.each do |action| %>
-				<ul>
-					<li><%= action.name %></li>
-				</ul>
-			<% end %>
+				<h5>Bonuses</h5>
+				<% cv.actions.positive.each do |action| %>
+		    	<div class="pos-actions">
+						<ul>
+							<li><%= action.name %></li>
+						</ul>
+					</div>
+				<% end %>
+				<br>
+					<h5>Deductions</h5>
+					<% cv.actions.negative.each do |action| %>
+						<div class="neg-actions">
+							<ul>
+								<li><%= action.name %></li>
+							</ul>
+						</div>
+					<% end %>
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ class CreateScholarHours < ActiveRecord::Migration
     	t.string :description
     	t.date :date_assigned
     	t.date :date_served
+    	t.integer :teacher_id
     end
   end
 end

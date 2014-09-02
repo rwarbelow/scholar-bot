@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   end
 
   namespace :teachers do
-    resources :students
+    resources :students do
+      resources :core_values, only: [:show]
+    end
+    resources :scholar_hours
     resources :courses do
       resources :student_actions
       get '/liveclass', to: 'live#classroom'
@@ -45,6 +48,7 @@ Rails.application.routes.draw do
 
   namespace :students do
     resources :core_values, only: [:show]
+    resources :scholar_hours, only: [:index, :show]
     root :to => "dashboard#index"
   end
 

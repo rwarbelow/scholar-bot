@@ -16,3 +16,7 @@
 /tmp
 server.csr
 server.pass.key
+server.crt
+server.key
+/cert
+cert

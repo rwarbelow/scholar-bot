@@ -108,4 +108,8 @@ class Student < ActiveRecord::Base
 			student if enrollment && enrollment.course_id.nil?
 		end
 	end
+
+	def unserved_scholar_hours
+		scholar_hours.where(date_served: nil)
+	end
 end
