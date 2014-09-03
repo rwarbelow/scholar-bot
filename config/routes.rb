@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
     get '/view_student', to: "students#view_student"
     root :to => "dashboard#index"
+    resources :teachers, only: [:index, :edit, :update]
   end
 
   namespace :guardians do

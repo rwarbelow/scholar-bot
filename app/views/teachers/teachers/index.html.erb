@@ -1,0 +1,51 @@
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <h2 class="text-center"><%= current_teacher.first_name %> <%= current_teacher.last_name %>'s Information</h2>
+  <p id="notice" class="text-center"><%= notice %></p>
+  <%= form_for(@teacher, url: teachers_teacher_path(@teacher), method: :patch) do |f| %>
+    <% if @teacher.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+
+        <ul>
+        <% @teacher.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :username %><br>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit class: "btn btn-primary form-control" %>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-3"></div>
