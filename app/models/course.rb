@@ -1,4 +1,8 @@
 class Course < ActiveRecord::Base
+	validates :teacher_id, 			presence: true
+	validates :subject,					presence: true
+	validates :period_id, 			presence: true
+
 	belongs_to :teacher
 	belongs_to :period
 	has_many :enrollments

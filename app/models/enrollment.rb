@@ -1,4 +1,7 @@
 class Enrollment < ActiveRecord::Base
+	validates :student_id, 			presence: true
+	validates :period_id, 			presence: true
+
 	belongs_to :student
 	belongs_to :period
 	belongs_to :course

@@ -4,7 +4,7 @@
   <%= form_for @procedure_practice, url: teachers_procedure_practices_path, role: "form" do |f| %>
     <% if @procedure_practice.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@procedure_practice.errors.count, "error") %> prohibited this student action from being saved:</h2>
+        <h2><%= pluralize(@procedure_practice.errors.count, "error") %> prohibited this procedure practice from being saved:</h2>
 
         <ul>
         <% @procedure_practice.errors.full_messages.each do |message| %>

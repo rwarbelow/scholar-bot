@@ -10,8 +10,5 @@ class Action < ActiveRecord::Base
 
 	scope :positive, -> { where(value: true)}
 	scope :negative, -> { where(value: false)}
-	# def core_values
-	# 	action.core_values
-	# end
 end
 

@@ -1,4 +1,8 @@
 class ScholarHour < ActiveRecord::Base
+	validates :student_id, 			presence: true
+	validates :reason, 					presence: true
+	validates :teacher_id, 			presence: true
+	validates :date_assigned, 	presence: true
 	has_many :student_actions
 	belongs_to :student
 	belongs_to :teacher

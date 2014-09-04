@@ -1,4 +1,7 @@
 class StudentAction < ActiveRecord::Base
+	validates :enrollment_id, 			presence: true
+	validates :action_id, 					presence: true
+	validates :date, 								presence: true
 	belongs_to :enrollment
 	belongs_to :action
 	belongs_to :course
