@@ -14,4 +14,17 @@ class Guardian < ActiveRecord::Base
 	def downcase_username
 		username = username.downcase if username.present?
 	end
+
+	def create_guardianships(student_ids)
+		student_ids.each { |id| guardianships.create(student_id: id) }
+	end
+
+	def generate_code
+  	self.code = loop do
+  		possible = (('A'..'Z').to_a + (0..9).to_a + ('a'..'z').to_a)
+  		random_token = (0...6).map { |n| possible.sample }.join
+  		break random_token unless Guardian.where(code: random_token).exists?
+  	end
+  	p self
+  end
 end

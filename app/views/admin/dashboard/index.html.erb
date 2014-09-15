@@ -1,9 +1,11 @@
 <h1>welcome, <%= current_user.first_name %> admin!</h1>
 
+<%= link_to "View Classes", admin_courses_path, class: "btn btn-default" %> <br> <br>
+<%= link_to "View Students", admin_students_path, class: "btn btn-default" %> <br> <br>
+<%= link_to "Create Guardian Accounts", admin_guardians_path, class: "btn btn-default" %> <br> <br>
+
+
 <%= form_tag admin_load_students_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import Students" %>
 <% end %>
-
-<%= link_to "View Classes", admin_courses_path %>
-<%= link_to "View Students", admin_students_path %>

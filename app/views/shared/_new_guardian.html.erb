@@ -1,0 +1,23 @@
+<%= form_for(guardian, url: admin_guardians_path) do |f| %>
+  <% if guardian.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(guardian.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+       	<% guardian.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+       </ul>
+		</div>
+ 	<% end %>
+
+  <tr>
+    <td><%= f.text_field :username, class: "form-control", :placeholder => "username" %></td>
+    <td></td>
+    <td><%= f.text_field :first_name, class: "form-control", :placeholder => "first name" %></td>
+    <td><%= f.text_field :last_name, class: "form-control", :placeholder => "last name" %></td>
+    <td><%= f.text_field :email, class: "form-control", :placeholder => "email" %></td>
+    <td><%= select_tag :student_ids, options_from_collection_for_select(Student.without_guardian, "id", :full_name), multiple: true, class: "chosen-select" %></td>
+    <td><%= f.submit %></td>
+  </tr>
+<% end %>

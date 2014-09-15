@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       session["#{user_type}_id".to_sym] = @user.id
       session[:user_type] = user_type
       @user.login_counter += 1
+      @user.save
       dashboard
     else
       flash[:errors] = "Invalid Login."

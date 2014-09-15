@@ -8,7 +8,7 @@ $(document).ready ->
     $(".chosen-select").chosen
       allow_single_deselect: true
       no_results_text: "No results"
-      width: "200px"
+      width: "100%"
 
 
   return

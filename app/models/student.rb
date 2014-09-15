@@ -104,6 +104,10 @@ class Student < ActiveRecord::Base
 		end
 	end
 
+	def self.without_guardian
+		all.select { |student| student.guardianships.empty? }
+	end
+
 	def self.available_for(course)
 		all.select do |student|
 			enrollment = student.enrollments.find { |enrollment| enrollment.period_id == course.period_id }

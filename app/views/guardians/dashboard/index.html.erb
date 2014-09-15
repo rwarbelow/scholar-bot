@@ -4,7 +4,7 @@
 		<%= link_to new_guardians_student_swot_report_path(g.student.id), class: "cv-link" do %>
 			<div class="student-bubble text-center">
 				<%= g.student.first_name %>
-				<p>Last SWOT Report submitted <%= g.student.swot_reports.first.created_at.strftime("%a, %m/%e") %>.</p>
+				<p>Last SWOT Report submitted: <%= g.student.swot_reports.any? ? g.student.swot_reports.first.created_at.strftime("%a, %m/%e") : "none" %>.</p>
 			</div>
 
 		<% end %>
