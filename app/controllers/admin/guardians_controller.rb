@@ -17,12 +17,18 @@ class Admin::GuardiansController < Admin::BaseController
 	end
 
 	def create
+		p "in create"
 		student_ids = params[:student_ids]
+		p student_ids
 		@guardian = Guardian.new(guardian_params)
+		p "new guardian"
 		@guardian.generate_code
+		p "generated code"
 		@guardian.password = @guardian.code
 		@guardian.password_confirmation = @guardian.code
+		p "assigned code as password"
 		if @guardian.save
+			p "saved guardian"
 			@guardian.create_guardianships(student_ids)
 			redirect_to admin_guardians_path, notice: 'Guardian was successfully created.'
 		else
