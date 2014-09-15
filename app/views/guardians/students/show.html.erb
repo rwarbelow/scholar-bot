@@ -1,0 +1,67 @@
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-8">
+		<h1 class="hello-header"><%= @student.first_name %> <%= @student.last_name %></h1>
+  	<% now = Date.today %>
+		<% target = Date.civil((Date.today.strftime("%Y").to_i + (13 - @student.grade.to_i)), 8, 25) %>
+		<h4 ><%= (target - now).to_i %> days until <%= @student.first_name %> starts college!</h4>
+		<p><b><%= link_to "#{pluralize(@student.unserved_scholar_hours.count, 'unserved scholar hour')}", guardians_student_scholar_hours_path(@student.id), class: 'cv-link' %> and 
+		<%= link_to "#{pluralize(@student.unserved_procedure_practices.count, 'unserved procedure practice')}", guardians_student_procedure_practices_path(@student.id), class: 'cv-link' %></b></p>
+	</div>
+	<div class="col-md-2">
+		<!-- <a data-toggle="modal" data-target="" href="" class="btn btn-primary btn-lg white-text">SWOT Report</a> -->
+		<%= link_to 'SWOT Report', new_guardians_student_swot_report_path(@student.id), :class => "btn btn-primary btn-lg"%>
+	</div>
+</div>
+
+<div>
+	<% CoreValue.all.each_slice(3) do |three| %>
+		<div class="row row-padded">
+				<% three.each do |cv| %>
+		  		<% @total = @student.all_actions_in(cv.id).count || 0 %>
+					<% @positive = @student.positive_actions_in(cv.id).count || 0 %>
+					<% @percentage = @total != 0 ? (@positive.to_f / @total.to_f * 100).round(0) : 100 %>	  
+				  <div class="col-md-4 text-center">
+				  	<%= link_to students_core_value_path(cv.id), class: "cv-link" do %>
+					  	<div class="wrapper <%= color_for(@percentage)%> text-center">
+								<%= @percentage %>%
+							</div>
+						 <% end %>
+			  		<button class="style-as-link" data-toggle="modal" data-target="#cv<%= cv.id %>"><%= cv.name %></button>
+				  </div>
+			  <% end %>
+			</div>
+	<% end %>
+</div>
+
+<% CoreValue.all.each do |cv| %>
+<div class="modal" id="cv<%= cv.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= cv.name %></h4>
+      </div>
+      <div class="modal-body">
+				<h5>Bonuses</h5>
+				<% cv.actions.positive.each do |action| %>
+		    	<div class="pos-actions">
+						<ul>
+							<li><%= action.name %></li>
+						</ul>
+					</div>
+				<% end %>
+				<br>
+					<h5>Deductions</h5>
+					<% cv.actions.negative.each do |action| %>
+						<div class="neg-actions">
+							<ul>
+								<li><%= action.name %></li>
+							</ul>
+						</div>
+					<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

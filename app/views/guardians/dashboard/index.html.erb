@@ -1,0 +1,13 @@
+<% current_user.guardianships.each do |g| %>
+<div class="row">
+	<div class="col-md-4"></div>
+		<%= link_to new_guardians_student_swot_report_path(g.student.id), class: "cv-link" do %>
+			<div class="student-bubble text-center">
+				<%= g.student.first_name %>
+				<p>Last SWOT Report submitted <%= g.student.swot_reports.first.created_at.strftime("%a, %m/%e") %>.</p>
+			</div>
+
+		<% end %>
+	<div class="col-md-4"></div>
+</div>
+<% end %>

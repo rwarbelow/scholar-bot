@@ -58,6 +58,6 @@ module ApplicationHelper
   end
 
   def courses_available_for(period)
-    Course.where(period_id: period)
+    Course.all.select { |c| c.period_id == period }
   end
 end

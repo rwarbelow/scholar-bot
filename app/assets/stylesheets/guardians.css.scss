@@ -1,3 +1,18 @@
 // Place all the styles related to the Guardians controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.student-bubble {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 50%;
+	font-size: 30px;
+	font-family: Alegreya Sans;
+	padding-top: 4%;
+	margin-bottom: 10px;
+	-webkit-font-smoothing: antialiased;
+	background-color: #6EC2FA;
+
+}

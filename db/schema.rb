@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902042159) do
+ActiveRecord::Schema.define(version: 20140913001302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,19 @@ ActiveRecord::Schema.define(version: 20140902042159) do
     t.integer  "grade",                       null: false
     t.string   "gender",                      null: false
     t.integer  "login_counter",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "swot_reports", force: true do |t|
+    t.integer  "guardianship_id"
+    t.boolean  "grade_check"
+    t.boolean  "scholar_hours_check"
+    t.boolean  "procedure_practices_check"
+    t.boolean  "behavior_check"
+    t.boolean  "home_check"
+    t.boolean  "paper_check"
+    t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

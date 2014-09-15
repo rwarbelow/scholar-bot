@@ -1,0 +1,25 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+	<h2 class="text-center"><%= student.first_name %>'s Scholar Hours</h2>
+	<table class="table">
+		<thead>
+			<th>Date Assigned</th>
+			<th>Staff</th>
+			<th>Reason</th>
+			<th>Notes</th>
+			<th>Served?</th>
+		</thead>
+		<tbody>
+			<% student.scholar_hours.each do |sh| %>
+			<tr>
+				<td><%= sh.date_assigned.strftime('%a, %b %e') %></td>
+				<td><%= sh.teacher.last_name %></td>
+				<td><%= sh.reason %></td>
+				<td><%= sh.description %></td>
+				<td class="sh-<%= sh.served? %>"><%= sh.served? ? sh.date_served.strftime('%a, %b %e') : "No" %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="col-md-2"></div>

@@ -15,6 +15,10 @@ module User
 		self.is_a?(Teacher)
 	end
 
+	def guardian?
+		self.is_a?(Guardian)
+	end
+
 	def full_name
 		"#{first_name} #{last_name}"
 	end

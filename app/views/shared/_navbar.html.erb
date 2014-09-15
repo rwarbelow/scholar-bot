@@ -13,6 +13,8 @@
           <li><%= link_to "Scholar Hours", teachers_scholar_hours_path %></li>
         <% elsif current_user.student? %>
           <li><%= link_to "Dashboard", students_root_path%></li>
+          <% elsif current_user.guardian? %>
+          <li><%= link_to "Dashboard", guardians_root_path%></li>
         <% end %>
         <% if current_teacher? %>
           <li class="dropdown">
@@ -32,6 +34,14 @@
         <%= form_tag teachers_view_student_path, method: :get, class: "navbar-form navbar-left" do %>
           <div class="form-group">
             <%= select_tag :student_id, options_from_collection_for_select(all_students, :id, :full_name), {:prompt => "Select a Student",include_blank: true, class: 'chosen-select' } %>
+          </div>
+          <button type="submit" class="btn btn-sm btn-default">Submit</button>
+        <% end %>
+      <% end %>
+      <% if current_user.guardian? %>
+        <%= form_tag guardians_view_student_path, method: :get, class: "navbar-form navbar-left" do %>
+          <div class="form-group">
+            <%= select_tag :student_id, options_from_collection_for_select(current_user.students, :id, :full_name), {:prompt => "Select Your Student",include_blank: true, class: 'chosen-select' } %>
           </div>
           <button type="submit" class="btn btn-sm btn-default">Submit</button>
         <% end %>

@@ -5,7 +5,6 @@ class AuthConstraint
 end
 
 Rails.application.routes.draw do
-
   namespace :admin do
     resources :student_actions
     resources :enrollments
@@ -51,6 +50,13 @@ Rails.application.routes.draw do
   end
 
   namespace :guardians do
+    resources :students, only: [:show] do
+      get '/scholar_hours', to: 'scholar_hours#index'
+      get '/procedure_practices', to: 'procedure_practices#index'
+      resources :swot_reports, only: [:index, :show, :new, :create]
+    end
+    get '/students/:id/behavior', to: 'students#behavior', as: "student_behavior"
+    get '/view_student', to: "students#view_student"
     root :to => "dashboard#index"
   end  
 

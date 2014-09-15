@@ -1,0 +1,142 @@
+<div class="row text-center">
+    <h1 class="hello-header"><%= @student.first_name %> <%= @student.last_name %></h1>
+    <% now = Date.today %>
+    <% target = Date.civil((Date.today.strftime("%Y").to_i + (13 - @student.grade.to_i)), 8, 25) %>
+    <h4 ><%= (target - now).to_i %> days until <%= @student.first_name %> starts college!</h4>
+    <p><b><%= link_to "#{pluralize(@student.unserved_scholar_hours.count, 'unserved scholar hour')}", guardians_student_scholar_hours_path(@student.id), class: 'cv-link' %></b> and 
+    <b><%= link_to "#{pluralize(@student.unserved_procedure_practices.count, 'unserved procedure practice')}", guardians_student_procedure_practices_path(@student.id), class: 'cv-link' %></b></p>
+  </div>
+</div>
+
+<div>
+  <% CoreValue.all.each_slice(3) do |three| %>
+    <div class="row row-padded">
+        <% three.each do |cv| %>
+          <% @total = @student.all_actions_in(cv.id).count || 0 %>
+          <% @positive = @student.positive_actions_in(cv.id).count || 0 %>
+          <% @percentage = @total != 0 ? (@positive.to_f / @total.to_f * 100).round(0) : 100 %>   
+          <div class="col-md-4 text-center">
+            <%= link_to students_core_value_path(cv.id), class: "cv-link" do %>
+              <div class="wrapper <%= color_for(@percentage)%> text-center">
+                <%= @percentage %>%
+              </div>
+             <% end %>
+            <button class="style-as-link" data-toggle="modal" data-target="#cv<%= cv.id %>"><%= cv.name %></button>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<% CoreValue.all.each do |cv| %>
+<div class="modal" id="cv<%= cv.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= cv.name %></h4>
+      </div>
+      <div class="modal-body">
+        <h5>Bonuses</h5>
+        <% cv.actions.positive.each do |action| %>
+          <div class="pos-actions">
+            <ul>
+              <li><%= action.name %></li>
+            </ul>
+          </div>
+        <% end %>
+        <br>
+          <h5>Deductions</h5>
+          <% cv.actions.negative.each do |action| %>
+            <div class="neg-actions">
+              <ul>
+                <li><%= action.name %></li>
+              </ul>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="col-md-3"></div>
+<%= form_for(@swot_report, url: guardians_student_swot_reports_path, class: "form-horizontal", role: "form") do |f| %>
+<div class="form-group col-md-6">
+  <br>
+  <% if @swot_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@swot_report.errors.count, "error") %> prohibited this guardian from being saved:</h2>
+
+      <ul>
+      <% @swot_report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.radio_button(:grade_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:grade_check, :false) %>
+    <%= label_tag(:no) %>
+    I checked my child's grades on Infinite Campus this week <%= link_to "(click to view)", "http://campusportal.ccsd.net", :target => "_blank"%>.
+  </div>  
+  
+  <div class="field form-group">
+    <%= f.radio_button(:procedure_practices_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:procedure_practices_check, :false) %>
+    <%= label_tag(:no) %>
+    I understand my child has <%= pluralize(@student.unserved_procedure_practices.count, 'unserved procedure practice') %> <%= link_to "(click to view)", guardians_student_procedure_practices_path(@student.id), :target => "_blank" %>.
+  </div>  
+
+  <div class="field form-group">
+    <%= f.radio_button(:scholar_hours_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:scholar_hours_check, :false) %>
+    <%= label_tag(:no) %>
+    I understand my child has <%= pluralize(@student.unserved_scholar_hours.count, 'unserved scholar hour') %> <%= link_to "(click to view)", guardians_student_scholar_hours_path(@student.id), :target => "_blank" %>.
+  </div>   
+
+  <div class="field form-group">
+    <%= f.radio_button(:behavior_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:behavior_check, :false) %>
+    <%= label_tag(:no) %>
+    I looked at my child's recent classroom behavior <%= link_to "(click to view)", guardians_student_behavior_path(@student.id),:target => "_blank" %>.
+  </div> 
+
+  <div class="field form-group">
+    <%= f.radio_button(:paper_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:paper_check, :false) %>
+    <%= label_tag(:no) %>
+    I looked at any important papers my child brought home from school this week. 
+  </div> 
+   
+  <div class="field form-group">
+    <%= f.radio_button(:home_check, :true) %>
+    <%= label_tag(:yes) %>
+    <%= f.radio_button(:home_check, :false) %>
+    <%= label_tag(:no) %>
+    My child followed SWOT expectations at home and outside of school this week.
+  </div> 
+
+  <div class="field form-group">
+    <label>Comments? Questions?</label>
+    <%= f.text_area :comments, class: "form-control" %>
+
+  </div>
+  <%= f.hidden_field :guardianship_id, value: @student.guardianships.find_by(guardian_id: current_user.id).id %>
+
+  <div class="actions">
+    <%= f.submit "Submit SWOT Report", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+<div class="col-md-3"></div>
+
+
+

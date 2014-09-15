@@ -1,0 +1,32 @@
+<h1 class="text-center">SWOT Reports for <%= @student.first_name %></h1> <br>
+<p id="notice"><%= notice %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date Submitted</th>
+      <th>Checked Grades?</th>
+      <th>Checked Scholar Hours?</th>
+      <th>Checked Procedure Practices?</th>
+      <th>Checked School Behavior?</th>
+      <th>Checked Papers?</th>
+      <th>Checked Home Behavior?</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @student.swot_reports.each do |sr| %>
+      <tr>
+        <td><%= sr.created_at.strftime("%A, %b %d") %></td>
+        <td><%= sr.grade_check ? "Yes" : "No" %></td>
+        <td><%= sr.scholar_hours_check ? "Yes" : "No"  %></td>
+        <td><%= sr.procedure_practices_check ? "Yes" : "No"  %></td>
+        <td><%= sr.behavior_check ? "Yes" : "No"  %></td>
+        <td><%= sr.paper_check ? "Yes" : "No"  %></td>
+        <td><%= sr.home_check ? "Yes" : "No"  %></td>
+        <td><%= sr.comments %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

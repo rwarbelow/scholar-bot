@@ -1,0 +1,49 @@
+
+<h1 class="text-center"><%= @student.first_name %>'s Behavior</h1>
+
+<div class="row">
+	<div class="col-md-1"></div>
+  <div class="col-md-5">
+  	<h3>Bonuses</h3>
+  	<table class="table">
+  		<thead style="color:#6EC2FA;">
+  			<th>Date</th>
+  			<th>Action</th>
+  			<th>Course</th>
+  			<th>Teacher</th>
+  		</thead>
+  		<tbody>
+  			<% @student.all_positive_actions(40, 30).each do |p| %>
+  				<tr>
+  					<td><%= p.created_at.strftime('%a, %b %e') %></td> 
+  					<td><%= p.action.name.capitalize %></td> 
+  					<td><%= p.enrollment.course.subject %></td>
+  					<td><%= p.enrollment.course.teacher.last_name %></td>
+  				</tr>
+				<% end %>
+  		</tbody>
+  	</table>
+  </div>
+  <div class="col-md-5">
+		<h3>Deductions</h3>
+  	<table class="table">
+  		<thead style="color:#F78D9F;">
+  			<th>Date</th>
+  			<th>Action</th>
+  			<th>Course</th>
+  			<th>Teacher</th>
+  		</thead>
+  		<tbody>
+  			<% @student.all_negative_actions(40, 30).each do |p| %>
+  				<tr>
+  					<td><%= p.created_at.strftime('%a, %b %e') %></td> 
+  					<td><%= p.action.name.capitalize %></td> 
+  					<td><%= p.enrollment.course.subject %></td>
+  					<td><%= p.enrollment.course.teacher.last_name %></td>
+  				</tr>
+				<% end %>
+  		</tbody>
+  	</table>
+  </div>
+  <div class="col-md-1"></div>
+</div>

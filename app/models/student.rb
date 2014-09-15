@@ -19,6 +19,7 @@ class Student < ActiveRecord::Base
 	has_many :guardians, through: :guardianships
 	has_many :scholar_hours
 	has_many :procedure_practices
+	has_many :swot_reports, through: :guardianships
 
 	default_scope { order('last_name ASC') }
 
@@ -76,14 +77,14 @@ class Student < ActiveRecord::Base
 		end
 	end
 
-	def all_negative_actions(limit = 100)
-		student_actions.limit(limit).select do |sa| 
+	def all_negative_actions(limit = 100, from_date = 300)
+		student_actions.limit(limit).where(:created_at => from_date.days.ago..Date.tomorrow).select do |sa| 
 			sa.action.value == false
 		end
 	end
 
-	def all_positive_actions(limit = 100)
-		student_actions.limit(limit).select do |sa| 
+	def all_positive_actions(limit = 100, from_date = 300)
+		student_actions.limit(limit).where(:created_at => from_date.days.ago..Date.tomorrow).select do |sa| 
 			sa.action.value == true
 		end
 	end

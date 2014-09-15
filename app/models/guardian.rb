@@ -6,6 +6,7 @@ class Guardian < ActiveRecord::Base
 	
   has_many :guardianships
   has_many :students, through: :guardianships
+  
 
   before_validation :downcase_username
 	has_secure_password
