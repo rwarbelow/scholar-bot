@@ -18,14 +18,14 @@
   <tbody>
     <% @guardians.each do |guardian| %>
       <tr>
-        <td><%= guardian.username %></td>
-        <td><%= guardian.code %></td>
+        <td>username: <br> <%= guardian.username %></td>
+        <td>password: <br><%= guardian.code %></td>
         <td><%= guardian.first_name %></td>
         <td><%= guardian.last_name %></td>
         <td><%= guardian.email %></td>
         <td>
           <% guardian.guardianships.each do |g| %>
-            <%= g.student_name %>
+            <%= g.student_name %> <br>
           <% end %>
         </td>
         <td><%= guardian.login_counter %></td>
