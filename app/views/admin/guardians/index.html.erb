@@ -16,6 +16,7 @@
   </thead>
 
   <tbody>
+    <%= render partial: 'shared/new_guardian', :locals => { guardian: @guardian } %>
     <% @guardians.each do |guardian| %>
       <tr>
         <td>username: <br> <%= guardian.username %></td>
@@ -33,7 +34,6 @@
       
     <% end %>
 
-  <%= render partial: 'shared/new_guardian', :locals => { guardian: @guardian } %>
   </tbody>
 </table>
 
