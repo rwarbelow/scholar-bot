@@ -20,8 +20,11 @@ class Guardians::SwotReportsController < Guardians::BaseController
 	
 	def create
 		set_student
+		p "got into create"
 		@swot_report = SwotReport.new(swot_report_params)
+		p @swot_report
 		if @swot_report.save
+			p "in save"
 			redirect_to guardians_student_swot_reports_path(@student.id)
 		else
 			render :new
