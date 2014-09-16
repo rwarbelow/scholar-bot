@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Date Submitted</th>
+      <th>Guardian</th>
       <th>Checked Grades?</th>
       <th>Checked Scholar Hours?</th>
       <th>Checked Procedure Practices?</th>
@@ -19,6 +20,7 @@
     <% @student.swot_reports.each do |sr| %>
       <tr>
         <td><%= sr.created_at.strftime("%A, %b %d") %></td>
+        <td><%= sr.name %></td>
         <td><%= sr.grade_check ? "Yes" : "No" %></td>
         <td><%= sr.scholar_hours_check ? "Yes" : "No"  %></td>
         <td><%= sr.procedure_practices_check ? "Yes" : "No"  %></td>

@@ -39,6 +39,6 @@ class Guardians::SwotReportsController < Guardians::BaseController
 	private
 
 	def swot_report_params
-		params.require(:swot_report).permit(:grade_check, :procedure_practices_check, :scholar_hours_check, :behavior_check, :home_check, :paper_check, :comments, :guardianship_id)
+		params.require(:swot_report).permit(:grade_check, :procedure_practices_check, :scholar_hours_check, :behavior_check, :home_check, :paper_check, :comments, :guardianship_id, :name)
 	end
 end

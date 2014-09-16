@@ -77,6 +77,11 @@
   <% end %>
 
   <div class="field form-group">
+    <%= label_tag(:guardian_name) %>
+    <%= f.text_field :name %>
+  </div>  
+
+  <div class="field form-group">
     <%= f.radio_button(:grade_check, :true) %>
     <%= label_tag(:yes) %>
     <%= f.radio_button(:grade_check, :false) %>
