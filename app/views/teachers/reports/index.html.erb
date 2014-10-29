@@ -2,7 +2,7 @@
 </div>
 <div class="col-md-8">
 
-<% @students.limit(3).each do |student| %>
+<% @students.each do |student| %>
 <%= image_tag 'robot.png', class: 'little-robot' %>
 <div class="row text-center">
 	<h3 class="hello-header"><%= "#{student.first_name} #{student.last_name}" %></h3>
