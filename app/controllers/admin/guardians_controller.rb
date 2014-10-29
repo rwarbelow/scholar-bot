@@ -23,10 +23,8 @@ class Admin::GuardiansController < Admin::BaseController
 		@guardian = Guardian.new(guardian_params)
 		p "new guardian"
 		@guardian.generate_code
-		p "generated code"
 		@guardian.password = @guardian.code
 		@guardian.password_confirmation = @guardian.code
-		p "assigned code as password"
 		if @guardian.save
 			p "saved guardian"
 			@guardian.create_guardianships(student_ids)

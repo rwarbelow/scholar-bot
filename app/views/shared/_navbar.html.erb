@@ -11,6 +11,7 @@
           <li><%= link_to "Dashboard", teachers_root_path%></li>
           <li><%= link_to "Procedure Practice", teachers_procedure_practices_path%></li>
           <li><%= link_to "Scholar Hours", teachers_scholar_hours_path %></li>
+          <li><%= link_to "Reports", teachers_reports_path %></li>
         <% elsif current_user.student? %>
           <li><%= link_to "Dashboard", students_root_path%></li>
           <% elsif current_user.guardian? %>

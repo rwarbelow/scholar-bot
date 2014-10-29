@@ -1,0 +1,39 @@
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+
+<% @students.limit(3).each do |student| %>
+<%= image_tag 'robot.png', class: 'little-robot' %>
+<div class="row text-center">
+	<h3 class="hello-header"><%= "#{student.first_name} #{student.last_name}" %></h3>
+	<h4>SWOT Report for <%= Date.today.strftime('%A, %b %d') %></h4>
+	<p>You have <b><%= student.unserved_scholar_hours.count%> unserved scholar hours and <b><%= student.unserved_procedure_practices.count %> unserved procedure practices</b>.</p>
+</div>
+
+<div>
+	<% @core_values.each_slice(3) do |three| %>
+		<% three.each do |cv| %>
+  		<% @total = student.all_actions_in(cv.id).count || 0 %>
+			<% @positive = student.positive_actions_in(cv.id).count || 0 %>
+			<% @percentage = @total != 0 ? (@positive.to_f / @total.to_f * 100).round(0) : 100 %>	  
+		  <div class="col-md-4">
+				<h3><%= @percentage %>%</h3>
+	  		<%= cv.name %>
+		  </div>
+		  <br>
+	  <% end %>
+	<% end %>
+</div>
+<br>
+<h4>Visit <b>scholarbot.org</b> to see all student actions.</h4>
+<br>
+<p>Student signature:_________________________________________________</p>
+<p>Guardian signature:________________________________________________</p>
+<p>Date:___________________________________________________________</p>
+
+<p style="page-break-before: always">
+
+<% end %>
+</div>
+<div class="col-md-2">
+</div>

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :teachers do
+    get '/reports', to: "reports#index"
     resources :students do
       resources :core_values, only: [:show]
     end
