@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :teachers do
+    get '/csv_actions', to: "student_actions#csv"
     get '/reports', to: "reports#index"
     resources :students do
       resources :core_values, only: [:show]
@@ -60,6 +61,7 @@ Rails.application.routes.draw do
     get '/view_student', to: "students#view_student"
     root :to => "dashboard#index"
   end  
+
 
   namespace :students do
     resources :core_values, only: [:show]

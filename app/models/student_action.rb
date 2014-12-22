@@ -15,5 +15,14 @@ class StudentAction < ActiveRecord::Base
 	def name
 		action.name
 	end
+
+	def self.to_csv
+    CSV.generate do |csv|
+      csv << ["date", "created_at", "student_id", "first_name", "last_name", "action", "class", "teacher"]
+      all.each do |action|
+        csv << [action.date, action.created_at, action.student.id_num, action.student.first_name, action.student.last_name, action.action.name, action.enrollment.course.subject, action.enrollment.course.teacher.last_name]
+      end
+    end
+  end
 end
 

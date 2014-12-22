@@ -7,6 +7,13 @@ class Teachers::StudentActionsController < Teachers::BaseController
     @student_actions = @course.student_actions.limit(limit)
 	end
 
+	def csv
+		@actions = StudentAction.all
+    respond_to do |format|
+      format.csv { render text: @actions.to_csv }
+    end
+	end
+
 	def show
 	end
 

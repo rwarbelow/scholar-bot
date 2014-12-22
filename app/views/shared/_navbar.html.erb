@@ -26,6 +26,7 @@
               <% if current_admin? %>
                 <li><%= link_to "Download Student Roster", admin_download_students_path%></li>
                 <li><%= link_to "Admin Dashboard", admin_root_path%></li>
+                <li><%= link_to "CSV Actions", teachers_csv_actions_path(format: :csv) %></li>
               <% end %>
             </ul>
           </li>

@@ -13,12 +13,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
 gem 'cancancan', '~> 1.9'
 gem 'autoprefixer-rails'
-gem 'faker'
 gem 'chosen-rails'
 gem 'compass-rails'
 gem 'sidekiq'
 
 group :development, :test do
+	gem 'faker'
 	gem 'rspec-rails'
 end
 
